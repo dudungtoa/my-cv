@@ -19,7 +19,7 @@
             --text-main: #495057;
             --light-bg: #f9fbfd;
             --card-bg: #ffffff;
-            --hire-me-color: #fe655c;
+            --hire-me-color: rgba(254, 101, 92, 0.85); /* Transparan */
         }
 
         [data-theme="dark"] {
@@ -47,27 +47,46 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+            align-items: flex-end;
         }
 
         .btn-control {
-            background-color: var(--primary-color);
+            background-color: rgba(84, 182, 137, 0.7); /* Transparan Hijau */
+            backdrop-filter: blur(5px); /* Efek Blur di belakang tombol */
             color: white;
             border: none;
-            border-radius: 50%;
+            border-radius: 50px;
             width: 50px;
             height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             text-decoration: none;
+            overflow: hidden;
         }
 
-        .btn-control:hover { transform: scale(1.1); color: white; }
-        .btn-hire-me { background-color: var(--hire-me-color); border-radius: 30px; width: auto; padding: 0 20px; }
+        .btn-control:hover { 
+            background-color: rgba(84, 182, 137, 1); 
+            transform: scale(1.05); 
+            color: white; 
+        }
+
+        /* Khusus Tombol Hire Me (Memanjang) */
+        .btn-hire-me { 
+            background-color: var(--hire-me-color); 
+            width: 50px; 
+            justify-content: flex-start;
+            white-space: nowrap;
+        }
+        .btn-hire-me i { min-width: 50px; text-align: center; }
+        .btn-hire-me .btn-text { opacity: 0; transition: 0.3s; font-size: 0.9rem; }
+        
+        .btn-hire-me:hover { width: 180px; background-color: rgba(254, 101, 92, 1); }
+        .btn-hire-me:hover .btn-text { opacity: 1; padding-right: 15px; }
 
         /* Sidebar Styling */
         .sidebar { 
@@ -98,7 +117,7 @@
         @media (max-width: 768px) {
             .sidebar { position: relative; min-height: auto; width: 100%; padding-bottom: 30px; }
             .main-content { margin-left: 0; padding: 30px; }
-            .controls-container { bottom: 20px; right: 20px; }
+            .controls-container { bottom: 20px; right: 20px; scale: 0.9; }
         }
 
         .experience-item { border-left: 2px solid #dee2e6; padding-left: 25px; position: relative; margin-bottom: 40px; }
@@ -108,7 +127,7 @@
         }
 
         .tag-badge { background: var(--primary-color); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; display: inline-block; margin: 3px; font-weight: 600; }
-        .skill-card-special { border-top: 3px solid var(--primary-color) !important; }
+        .cert-date { font-size: 0.85rem; color: var(--primary-color); font-weight: 600; }
 
         footer { border-top: 1px solid #dee2e6; margin-top: 50px; padding-top: 20px; color: #6c757d; font-size: 0.9rem; }
     </style>
@@ -116,7 +135,10 @@
 <body data-theme="light">
 
 <div class="controls-container">
-    <a href="contact.html" class="btn-control btn-hire-me translatable" data-id="Hire Me" data-en="Hire Me">Hire Me</a>
+    <a href="contact.html" class="btn-control btn-hire-me">
+        <i class="fas fa-paper-plane"></i>
+        <span class="btn-text translatable" data-id="Hubungi Saya" data-en="Contact Me">Hubungi Saya</span>
+    </a>
     <button id="lang-toggle" class="btn-control">EN</button>
     <button id="theme-toggle" class="btn-control"><i id="theme-icon" class="fas fa-moon"></i></button>
 </div>
@@ -134,6 +156,7 @@
             <div class="nav flex-column text-start mt-4">
                 <a class="nav-link active translatable" href="#about" data-id="<i class='fas fa-user me-2'></i> Profil" data-en="<i class='fas fa-user me-2'></i> Profile"><i class="fas fa-user me-2"></i> Profil</a>
                 <a class="nav-link translatable" href="#experience" data-id="<i class='fas fa-briefcase me-2'></i> Pengalaman" data-en="<i class='fas fa-briefcase me-2'></i> Experience"><i class="fas fa-briefcase me-2"></i> Pengalaman</a>
+                <a class="nav-link translatable" href="#certifications" data-id="<i class='fas fa-certificate me-2'></i> Sertifikasi" data-en="<i class='fas fa-certificate me-2'></i> Certifications"><i class="fas fa-certificate me-2"></i> Sertifikasi</a>
                 <a class="nav-link translatable" href="#skills" data-id="<i class='fas fa-tools me-2'></i> Keahlian" data-en="<i class='fas fa-tools me-2'></i> Skills"><i class="fas fa-tools me-2"></i> Keahlian</a>
             </div>
 
@@ -149,33 +172,10 @@
                 <h2 class="fw-bold translatable" data-id="Tentang Saya" data-en="About Me">Tentang Saya</h2>
                 <hr style="width: 50px; border: 2px solid var(--primary-color); margin: auto;">
                 <p class="mt-4 translatable" style="max-width: 800px; margin: 20px auto; font-size: 1.1em;" 
-                   data-id="Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis. Saat ini, saya dipercaya sebagai Operator Sistem Informasi Akademik di STIE Gema Widya Bangsa, mengelola tata kelola data pendidikan tinggi dan memastikan integritas sistem informasi kampus." 
-                   data-en="I am a Digital Business student at Universitas Padjadjaran focusing on technology integration for business efficiency. Currently, I serve as an Academic Information System Operator at STIE Gema Widya Bangsa, managing higher education data governance and ensuring system integrity.">
+                   data-id="Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis. Saat ini, saya dipercaya sebagai Operator Sistem Informasi Akademik di STIE Gema Widya Bangsa, mengelola tata kelola data pendidikan tinggi." 
+                   data-en="I am a Digital Business student at Universitas Padjadjaran focusing on technology integration for business efficiency. Currently, I serve as an Academic Information System Operator at STIE Gema Widya Bangsa, managing higher education data governance.">
                     Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis.
                 </p>
-            </section>
-
-            <section class="mb-5">
-                <div class="row g-4 text-center">
-                    <div class="col-md-4">
-                        <div class="card p-3 shadow-sm skill-card-special">
-                            <h6 class="fw-bold"><i class="fas fa-shield-alt text-primary me-2"></i> Data Governance</h6>
-                            <p class="small">Data Security & Integrity</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card p-3 shadow-sm skill-card-special">
-                            <h6 class="fw-bold"><i class="fas fa-tasks text-primary me-2"></i> System Management</h6>
-                            <p class="small">ERP & Academic Systems</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card p-3 shadow-sm skill-card-special">
-                            <h6 class="fw-bold"><i class="fas fa-bolt text-primary me-2"></i> Crisis Management</h6>
-                            <p class="small">Troubleshooting & Support</p>
-                        </div>
-                    </div>
-                </div>
             </section>
 
             <section id="experience" class="mb-5">
@@ -183,20 +183,42 @@
                 
                 <div class="experience-item">
                     <h5 class="fw-bold mb-1">Academic Information System Operator</h5>
-                    <div class="text-primary fw-bold mb-2">STIE Gema Widya Bangsa | Mei 2024 - Sekarang</div>
-                    <ul class="small translatable" data-id="<li>Mengelola database akademik dan pelaporan PDDIKTI.</li><li>Memimpin rekrutmen mahasiswa baru melalui strategi marketing digital.</li><li>Memberikan dukungan teknis (troubleshooting) bagi pengguna sistem.</li>" data-en="<li>Managing academic databases and PDDIKTI reporting.</li><li>Leading new student recruitment through digital marketing strategies.</li><li>Providing technical support and troubleshooting for system users.</li>">
+                    <div class="text-primary fw-bold mb-2 translatable" data-id="STIE Gema Widya Bangsa | Mei 2024 - Sekarang" data-en="STIE Gema Widya Bangsa | May 2024 - Present">STIE Gema Widya Bangsa | Mei 2024 - Sekarang</div>
+                    <ul class="small">
                         <li>Mengelola database akademik dan pelaporan PDDIKTI.</li>
-                        <li>Memimpin rekrutmen mahasiswa baru melalui strategi marketing digital.</li>
+                        <li>Technical Support & Crisis Management (KRS/Input Nilai).</li>
                     </ul>
                 </div>
 
                 <div class="experience-item">
                     <h5 class="fw-bold mb-1">Staf Akademik</h5>
                     <div class="text-primary fw-bold mb-2">Universitas Bandung | 2022 - 2024</div>
-                    <ul class="small translatable" data-id="<li>Melayani administrasi akademik dan digitalisasi dokumen fisik menjadi arsip digital.</li><li>Mendukung operasional harian institusi dan proses penerimaan mahasiswa baru.</li>" data-en="<li>Handling academic administration and digitizing physical documents into digital archives.</li><li>Supporting daily institutional operations and the new student admission process.</li>">
-                        <li>Melayani administrasi akademik dan digitalisasi dokumen fisik.</li>
+                    <ul class="small">
+                        <li>Digitalisasi dokumen fisik menjadi arsip digital sistematis.</li>
                         <li>Mendukung operasional harian institusi.</li>
                     </ul>
+                </div>
+            </section>
+
+            <section id="certifications" class="mb-5">
+                <h3 class="fw-bold mb-4 translatable" data-id="Sertifikasi & Pelatihan" data-en="Certifications & Training">Sertifikasi & Pelatihan</h3>
+                
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-0">Introduction to Cybersecurity</h5>
+                    <div class="cert-date mb-2">Cisco Networking Academy | Jan 23, 2026</div>
+                    <p class="small text-muted translatable" data-id="Mampu menjelaskan dasar keamanan online dan perlindungan organisasi." data-en="Capable of explaining online security basics and organizational protection.">Mampu menjelaskan dasar keamanan online dan perlindungan organisasi.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-0 translatable" data-id="Sertifikat Kompetensi TKJ" data-en="TKJ Competency Certificate">Sertifikat Kompetensi TKJ</h5>
+                    <div class="cert-date mb-2">PT. Cakrawala Global Informatika | 2019</div>
+                    <p class="small text-muted translatable" data-id="Kompeten dalam instalasi PC, Jaringan LAN, dan Konfigurasi Server." data-en="Competent in PC installation, LAN Networking, and Server Configuration.">Kompeten dalam instalasi PC, Jaringan LAN, dan Konfigurasi Server.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-0">Workshop Merdeka Belajar</h5>
+                    <div class="cert-date mb-2">Kemendikbudristek RI | Nov 2022</div>
+                    <p class="small text-muted translatable" data-id="Workshop mengenai efektivitas program Merdeka Belajar." data-en="Workshop regarding the effectiveness of Merdeka Belajar program.">Workshop mengenai efektivitas program Merdeka Belajar.</p>
                 </div>
             </section>
 
@@ -206,10 +228,8 @@
                     <div>
                         <span class="tag-badge">CYBERSECURITY</span>
                         <span class="tag-badge">DATA MINING</span>
-                        <span class="tag-badge">PYTHON</span>
                         <span class="tag-badge">LINUX SERVER</span>
                         <span class="tag-badge">n8n AUTOMATION</span>
-                        <span class="tag-badge">SEO</span>
                         <span class="tag-badge">DIGITAL MARKETING</span>
                     </div>
                 </div>
@@ -217,7 +237,6 @@
 
             <footer class="text-center text-md-start">
                 <p class="mb-0">&copy; 2026 <strong>Usama Zaid Ali Hendrawan</strong>. All Rights Reserved.</p>
-                <p class="small mt-1 translatable" data-id="Didesain & Dibangun oleh <strong>DudungToa_</strong>" data-en="Designed & Built by <strong>DudungToa_</strong>">Didesain & Dibangun oleh <strong>DudungToa_</strong></p>
             </footer>
         </main>
     </div>
