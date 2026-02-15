@@ -1,7 +1,7 @@
-# Personal Digital CV - [Nama Lengkap Anda]
+# Personal Digital CV - Usama Zaid Ali Hendrawan
 
-[![GitHub Pages](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=github)](LINK_GITHUB_PAGES_ANDA)
-[![Profile](https://img.shields.io/badge/LinkedIn-Profile-blue?style=for-the-badge&logo=linkedin)](LINK_LINKEDIN_ANDA)
+[![GitHub Pages](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=github)](https://dudungtoa.github.io/my-cv/)
+[![Support me on Saweria](https://img.shields.io/badge/Saweria-Support%20Me-orange?style=for-the-badge&logo=coffee)](https://saweria.co/dudungtoa)
 
 Repositori ini berisi kode sumber untuk Curriculum Vitae (CV) berbasis web saya. Proyek ini dibangun sebagai representasi digital dari portofolio profesional dan akademik saya di bidang **Bisnis Digital**.
 
