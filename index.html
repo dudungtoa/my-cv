@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Usama Zaid Ali Hendrawan (DudungToa_)</title>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%2354b689' d='M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-11zm-1 .724c-2.067.95-4.539 1.481-7 1.656v6.237c2.461.175 4.933.706 7 1.656V3.224zm-8 2.25c-1.847.144-3.582.305-5 .667v.334c1.418.362 3.153.523 5 .667V5.474zM0 8c0 .341.062.654.19.934L4 12.134V7.866l-3.81 3.2C.062 11.346 0 11.033 0 10.692V8z'/></svg>">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #54b689; 
+            --dark-bg: #2d3e50;
+            --text-main: #495057;
+            --light-bg: #f9fbfd;
+            --hire-me-color: #fe655c;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            background-color: var(--light-bg);
+        }
+        
+        /* Hire Me Button */
+        .btn-hire-me {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--hire-me-color);
+            color: white;
+            font-weight: 700;
+            border-radius: 30px;
+            padding: 10px 25px;
+            z-index: 1001;
+            box-shadow: 0 4px 10px rgba(254, 101, 92, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-hire-me:hover {
+            background-color: #e55b52;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Sidebar Styling */
+        .sidebar { 
+            background: var(--dark-bg); 
+            color: white; 
+            min-height: 100vh; 
+            padding-top: 50px; 
+            position: fixed;
+            width: inherit;
+            z-index: 100;
+        }
+        
+        .profile-img { 
+            width: 160px; 
+            height: 160px; 
+            object-fit: cover; 
+            border: 4px solid rgba(255,255,255,0.1); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: 0.3s; 
+            background-color: #444;
+        }
+        
+        .nav-link { 
+            color: rgba(255,255,255,0.7); 
+            transition: 0.3s; 
+            border-radius: 5px; 
+            margin: 5px 15px; 
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .nav-link:hover, .nav-link.active { 
+            color: white; 
+            background: rgba(255,255,255,0.1); 
+        }
+        
+        .social-links a {
+            color: rgba(255,255,255,0.7);
+            transition: 0.3s;
+            text-decoration: none;
+            font-size: 1.4rem;
+        }
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            display: inline-block;
+        }
+        
+        /* Content Styling */
+        .main-content { margin-left: 25%; padding: 60px; }
+        
+        @media (max-width: 768px) {
+            .sidebar { position: relative; min-height: auto; width: 100%; padding-bottom: 30px; }
+            .main-content { margin-left: 0; padding: 30px; }
+            .btn-hire-me { top: 10px; right: 10px; padding: 5px 15px; font-size: 0.8rem; }
+        }
+
+        .section-title { 
+            font-weight: 700; 
+            color: var(--dark-bg); 
+            border-bottom: 3px solid var(--primary-color); 
+            display: inline-block; 
+            margin-bottom: 25px; 
+        }
+
+        .experience-item { 
+            border-left: 2px solid #dee2e6; 
+            padding-left: 25px; 
+            position: relative; 
+            margin-bottom: 40px; 
+        }
+
+        .experience-item::before { 
+            content: ""; 
+            position: absolute; 
+            width: 14px; 
+            height: 14px; 
+            background: var(--primary-color); 
+            border-radius: 50%; 
+            left: -8px; 
+            top: 6px; 
+        }
+
+        .tag-badge {
+            background: #e9ecef;
+            color: var(--dark-bg);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin: 3px;
+            font-weight: 600;
+        }
+
+        .cert-date {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        footer {
+            border-top: 1px solid #dee2e6;
+            margin-top: 50px;
+            padding-top: 20px;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<a href="contact.html" class="btn-hire-me">Hire Me</a>
+
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <nav class="col-md-3 col-lg-2 sidebar text-center">
+            <div class="mb-4 px-3">
+                <img src="AccountPictures.JPG" 
+                     onerror="this.src='AccountPictures.jpg';" 
+                     class="rounded-circle profile-img mb-3" 
+                     alt="Usama Zaid Ali Hendrawan">
+                
+                <h5 class="fw-bold mb-0">Usama Zaid Ali Hendrawan</h5>
+                <p class="text-primary fw-bold small mb-2">(@DudungToa_)</p>
+                <p class="small opacity-75">Digital Business Student @ UNPAD</p>
+            </div>
+            
+            <div class="nav flex-column text-start mt-4">
+                <a class="nav-link active" href="#about"><i class="fas fa-user me-2"></i> Profile</a>
+                <a class="nav-link" href="#experience"><i class="fas fa-briefcase me-2"></i> Experience</a>
+                <a class="nav-link" href="#certifications"><i class="fas fa-certificate me-2"></i> Certifications</a>
+                <a class="nav-link" href="#skills"><i class="fas fa-tools me-2"></i> Skills</a>
+            </div>
+
+            <div class="mt-5 social-links">
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="https://web.facebook.com/dudungtoa/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/usamazaid17/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UCnsrUJoWBSpsznGTr7nJHIw" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://github.com/DudungToa" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="col-md-9 col-lg-10 main-content">
+            <section id="about" class="mb-5">
+                <h2 class="section-title">About Me</h2>
+                <p class="lead">Mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada <strong>Analisis Data, Digital Marketing, dan Cybersecurity.</strong></p>
+                <p>Aktif membangun kehadiran digital sebagai <strong>DudungToa_</strong> melalui konten kreatif di TikTok dan YouTube. Memiliki pengalaman operasional di bidang administrasi akademik dan sedang aktif meneliti penggunaan <em>Data Mining</em> untuk solusi bisnis.</p>
+            </section>
+
+            <section id="experience" class="mb-5">
+                <h3 class="fw-bold mb-4">Work Experience</h3>
+                
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-1">Staf Akademik & Digital Marketing</h5>
+                    <div class="text-primary fw-bold mb-2">STIE Gema Widya Bangsa | Jan 2025 - Sekarang</div>
+                    <ul class="small">
+                        <li>Mengelola database akademik dan administrasi kemahasiswaan.</li>
+                        <li>Memimpin rekrutmen mahasiswa baru melalui pemasaran digital dan konten media sosial.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-1">Staf Akademik</h5>
+                    <div class="text-primary fw-bold mb-2">Universitas Bandung | 2022 - 2024</div>
+                    <ul class="small">
+                        <li>Melayani administrasi akademik dan mendukung operasional harian institusi.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-1">Thesis Researcher (Data Mining)</h5>
+                    <div class="text-primary fw-bold mb-2">Universitas Padjadjaran | 2025</div>
+                    <p class="small text-muted">Menerapkan algoritma clustering pada data pendaftar beasiswa untuk optimasi sistem seleksi.</p>
+                </div>
+            </section>
+
+            <section id="certifications" class="mb-5">
+                <h3 class="fw-bold mb-4">Certifications & Training</h3>
+                
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-0">Introduction to Cybersecurity</h5>
+                    <div class="cert-date mb-2">Cisco Networking Academy | Jan 23, 2026</div>
+                    <p class="small text-muted mb-3">Mampu menjelaskan dasar keamanan online, ancaman siber, dan cara melindungi organisasi.</p>
+                    <div class="mt-2">
+                        <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="5f979fbe-5aec-480b-af54-f148207ee0f0" data-share-badge-host="https://www.credly.com"></div>
+                        <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-0">Sertifikat Kompetensi Teknik Komputer dan Jaringan</h5>
+                    <div class="cert-date mb-2">PT. Cakrawala Global Informatika | April 2019</div>
+                    <p class="small text-muted">Dinyatakan <strong>Sangat Kompeten</strong> dalam instalasi PC, sistem operasi, jaringan LAN, serta konfigurasi server.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-0">Workshop Pendidikan: Merdeka Belajar</h5>
+                    <div class="cert-date mb-2">Kemendikbudristek RI & Komisi X DPR RI | Nov 2022</div>
+                    <p class="small text-muted">Peserta workshop mengenai efektivitas program Merdeka Belajar terhadap mutu pendidikan nasional.</p>
+                </div>
+            </section>
+
+            <section id="skills" class="mb-5">
+                <h3 class="fw-bold mb-4">Keahlian & Teknologi</h3>
+                <div class="card bg-white p-4 border-0 shadow-sm">
+                    <div>
+                        <span class="tag-badge text-uppercase">Cybersecurity</span>
+                        <span class="tag-badge text-uppercase">Data Mining</span>
+                        <span class="tag-badge text-uppercase">Network Configuration</span>
+                        <span class="tag-badge text-uppercase">Python</span>
+                        <span class="tag-badge text-uppercase">Linux Server</span>
+                        <span class="tag-badge text-uppercase">n8n Automation</span>
+                        <span class="tag-badge text-uppercase">Digital Marketing</span>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="container-fluid p-0 text-center text-md-start">
+                    <p class="mb-0">&copy; 2026 <strong>Usama Zaid Ali Hendrawan</strong>. All Rights Reserved.</p>
+                    <p class="small mt-1">Designed and Built by <strong>DudungToa_</strong></p>
+                </div>
+            </footer>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
