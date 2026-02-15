@@ -22,13 +22,12 @@
             --hire-me-color: #fe655c;
         }
 
-        /* Dark Mode Variables */
         [data-theme="dark"] {
             --sidebar-bg: #1a1a1a;
             --text-main: #e9ecef;
             --light-bg: #121212;
             --card-bg: #1e1e1e;
-            --dark-bg: #54b689; /* Warna judul di mode gelap */
+            --dark-bg: #54b689;
         }
 
         body { 
@@ -39,36 +38,36 @@
             transition: all 0.3s ease;
         }
         
-        /* Floating Controls */
+        /* Floating Controls at Bottom Right */
         .controls-container {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             z-index: 1001;
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .btn-control {
-            background-color: var(--card-bg);
-            color: var(--text-main);
-            border: 1px solid var(--primary-color);
-            border-radius: 30px;
-            padding: 10px 15px;
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .btn-hire-me {
-            background-color: var(--hire-me-color);
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 25px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            cursor: pointer;
             text-decoration: none;
         }
-        .btn-hire-me:hover { background-color: #e55b52; color: white; transform: translateY(-2px); }
+
+        .btn-control:hover { transform: scale(1.1); color: white; }
+        .btn-hire-me { background-color: var(--hire-me-color); border-radius: 30px; width: auto; padding: 0 20px; }
 
         /* Sidebar Styling */
         .sidebar { 
@@ -79,37 +78,27 @@
             position: fixed;
             width: inherit;
             z-index: 100;
-            transition: background 0.3s ease;
         }
         
         .profile-img { 
             width: 160px; height: 160px; object-fit: cover; 
             border: 4px solid rgba(255,255,255,0.1); 
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            background-color: #444;
         }
         
-        .nav-link { 
-            color: rgba(255,255,255,0.7); 
-            margin: 5px 15px; 
-            font-weight: 500;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        
+        .nav-link { color: rgba(255,255,255,0.7); margin: 5px 15px; font-weight: 500; text-decoration: none; transition: 0.3s; }
         .nav-link:hover, .nav-link.active { color: white; background: rgba(255,255,255,0.1); }
         
-        .social-links a { color: rgba(255,255,255,0.7); font-size: 1.4rem; transition: 0.3s; }
+        .social-links a { color: rgba(255,255,255,0.7); font-size: 1.4rem; transition: 0.3s; margin: 0 8px; }
         .social-links a:hover { color: var(--primary-color); transform: translateY(-3px); display: inline-block; }
         
-        /* Content Styling */
         .main-content { margin-left: 25%; padding: 60px; }
         .card { background-color: var(--card-bg); color: var(--text-main); transition: 0.3s; }
         
         @media (max-width: 768px) {
             .sidebar { position: relative; min-height: auto; width: 100%; padding-bottom: 30px; }
             .main-content { margin-left: 0; padding: 30px; }
-            .controls-container { top: 10px; right: 10px; scale: 0.8; }
+            .controls-container { bottom: 20px; right: 20px; }
         }
 
         .experience-item { border-left: 2px solid #dee2e6; padding-left: 25px; position: relative; margin-bottom: 40px; }
@@ -118,21 +107,8 @@
             background: var(--primary-color); border-radius: 50%; left: -8px; top: 6px; 
         }
 
-        .tag-badge {
-            background: var(--primary-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin: 3px;
-            font-weight: 600;
-        }
-
-        .skill-card-special {
-            border-top: 3px solid var(--primary-color) !important;
-            height: 100%;
-        }
+        .tag-badge { background: var(--primary-color); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; display: inline-block; margin: 3px; font-weight: 600; }
+        .skill-card-special { border-top: 3px solid var(--primary-color) !important; }
 
         footer { border-top: 1px solid #dee2e6; margin-top: 50px; padding-top: 20px; color: #6c757d; font-size: 0.9rem; }
     </style>
@@ -140,9 +116,9 @@
 <body data-theme="light">
 
 <div class="controls-container">
+    <a href="contact.html" class="btn-control btn-hire-me translatable" data-id="Hire Me" data-en="Hire Me">Hire Me</a>
     <button id="lang-toggle" class="btn-control">EN</button>
     <button id="theme-toggle" class="btn-control"><i id="theme-icon" class="fas fa-moon"></i></button>
-    <a href="contact.html" class="btn-control btn-hire-me translatable" data-id="Hire Me" data-en="Hire Me">Hire Me</a>
 </div>
 
 <div class="container-fluid p-0">
@@ -162,11 +138,9 @@
             </div>
 
             <div class="mt-5 social-links">
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="https://web.facebook.com/dudungtoa/" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/usamazaid17/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://github.com/DudungToa" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
+                <a href="https://web.facebook.com/dudungtoa/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/usamazaid17/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/DudungToa" target="_blank"><i class="fab fa-github"></i></a>
             </div>
         </nav>
 
@@ -177,28 +151,28 @@
                 <p class="mt-4 translatable" style="max-width: 800px; margin: 20px auto; font-size: 1.1em;" 
                    data-id="Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis. Saat ini, saya dipercaya sebagai Operator Sistem Informasi Akademik di STIE Gema Widya Bangsa, mengelola tata kelola data pendidikan tinggi dan memastikan integritas sistem informasi kampus." 
                    data-en="I am a Digital Business student at Universitas Padjadjaran focusing on technology integration for business efficiency. Currently, I serve as an Academic Information System Operator at STIE Gema Widya Bangsa, managing higher education data governance and ensuring system integrity.">
-                    Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis. Saat ini, saya dipercaya sebagai Operator Sistem Informasi Akademik di STIE Gema Widya Bangsa, mengelola tata kelola data pendidikan tinggi dan memastikan integritas sistem informasi kampus.
+                    Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis.
                 </p>
             </section>
 
-            <section id="special-skills" class="mb-5">
-                <div class="row g-4">
+            <section class="mb-5">
+                <div class="row g-4 text-center">
                     <div class="col-md-4">
                         <div class="card p-3 shadow-sm skill-card-special">
                             <h6 class="fw-bold"><i class="fas fa-shield-alt text-primary me-2"></i> Data Governance</h6>
-                            <p class="small translatable" data-id="Paham menjaga kerahasiaan dan keamanan data institusi." data-en="Expertise in maintaining confidentiality and security of institutional data.">Paham menjaga kerahasiaan dan keamanan data institusi.</p>
+                            <p class="small">Data Security & Integrity</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card p-3 shadow-sm skill-card-special">
                             <h6 class="fw-bold"><i class="fas fa-tasks text-primary me-2"></i> System Management</h6>
-                            <p class="small translatable" data-id="Berinteraksi langsung dengan ERP Pendidikan tinggi." data-en="Hands-on experience with Higher Education ERP systems.">Berinteraksi langsung dengan ERP Pendidikan tinggi.</p>
+                            <p class="small">ERP & Academic Systems</p>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card p-3 shadow-sm skill-card-special">
                             <h6 class="fw-bold"><i class="fas fa-bolt text-primary me-2"></i> Crisis Management</h6>
-                            <p class="small translatable" data-id="Terbiasa menangani kendala sistem pada masa krusial (KRS/Input Nilai)." data-en="Experienced in handling system errors during crucial periods (Academic Registration).">Terbiasa menangani kendala sistem pada masa krusial (KRS/Input Nilai).</p>
+                            <p class="small">Troubleshooting & Support</p>
                         </div>
                     </div>
                 </div>
@@ -209,10 +183,19 @@
                 
                 <div class="experience-item">
                     <h5 class="fw-bold mb-1">Academic Information System Operator</h5>
-                    <div class="text-primary fw-bold mb-2">STIE Gema Widya Bangsa | 2024 - Present</div>
-                    <ul class="small translatable" data-id="<li>Mengelola database akademik dan pelaporan PDDIKTI.</li><li>Technical support bagi mahasiswa dan dosen.</li>" data-en="<li>Managing academic databases and PDDIKTI reporting.</li><li>Providing technical support for students and faculty.</li>">
+                    <div class="text-primary fw-bold mb-2">STIE Gema Widya Bangsa | Mei 2024 - Sekarang</div>
+                    <ul class="small translatable" data-id="<li>Mengelola database akademik dan pelaporan PDDIKTI.</li><li>Memimpin rekrutmen mahasiswa baru melalui strategi marketing digital.</li><li>Memberikan dukungan teknis (troubleshooting) bagi pengguna sistem.</li>" data-en="<li>Managing academic databases and PDDIKTI reporting.</li><li>Leading new student recruitment through digital marketing strategies.</li><li>Providing technical support and troubleshooting for system users.</li>">
                         <li>Mengelola database akademik dan pelaporan PDDIKTI.</li>
-                        <li>Technical support bagi mahasiswa dan dosen.</li>
+                        <li>Memimpin rekrutmen mahasiswa baru melalui strategi marketing digital.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-1">Staf Akademik</h5>
+                    <div class="text-primary fw-bold mb-2">Universitas Bandung | 2022 - 2024</div>
+                    <ul class="small translatable" data-id="<li>Melayani administrasi akademik dan digitalisasi dokumen fisik menjadi arsip digital.</li><li>Mendukung operasional harian institusi dan proses penerimaan mahasiswa baru.</li>" data-en="<li>Handling academic administration and digitizing physical documents into digital archives.</li><li>Supporting daily institutional operations and the new student admission process.</li>">
+                        <li>Melayani administrasi akademik dan digitalisasi dokumen fisik.</li>
+                        <li>Mendukung operasional harian institusi.</li>
                     </ul>
                 </div>
             </section>
@@ -226,6 +209,7 @@
                         <span class="tag-badge">PYTHON</span>
                         <span class="tag-badge">LINUX SERVER</span>
                         <span class="tag-badge">n8n AUTOMATION</span>
+                        <span class="tag-badge">SEO</span>
                         <span class="tag-badge">DIGITAL MARKETING</span>
                     </div>
                 </div>
@@ -233,33 +217,28 @@
 
             <footer class="text-center text-md-start">
                 <p class="mb-0">&copy; 2026 <strong>Usama Zaid Ali Hendrawan</strong>. All Rights Reserved.</p>
-                <p class="small mt-1">Built with <i class="fas fa-heart text-danger"></i> by <strong>DudungToa_</strong></p>
+                <p class="small mt-1 translatable" data-id="Didesain & Dibangun oleh <strong>DudungToa_</strong>" data-en="Designed & Built by <strong>DudungToa_</strong>">Didesain & Dibangun oleh <strong>DudungToa_</strong></p>
             </footer>
         </main>
     </div>
 </div>
 
 <script>
-    // Theme Toggle Logic
+    // Theme Toggle
     const themeBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
-    const body = document.body;
-
     themeBtn.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        body.setAttribute('data-theme', newTheme);
-        themeIcon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        const isDark = document.body.getAttribute('data-theme') === 'dark';
+        document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        themeIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
     });
 
-    // Language Toggle Logic
+    // Language Toggle
     const langBtn = document.getElementById('lang-toggle');
     let currentLang = 'id';
-
     langBtn.addEventListener('click', () => {
         currentLang = currentLang === 'id' ? 'en' : 'id';
         langBtn.innerText = currentLang === 'id' ? 'EN' : 'ID';
-        
         document.querySelectorAll('.translatable').forEach(el => {
             el.innerHTML = el.getAttribute(`data-${currentLang}`);
         });
