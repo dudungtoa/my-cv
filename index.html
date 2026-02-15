@@ -130,6 +130,48 @@
         .cert-date { font-size: 0.85rem; color: var(--primary-color); font-weight: 600; }
 
         footer { border-top: 1px solid #dee2e6; margin-top: 50px; padding-top: 20px; color: #6c757d; font-size: 0.9rem; }
+        /* Styling Kartu Keahlian Khusus */
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.skill-card-modern {
+    background: var(--card-bg);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.skill-card-modern:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.skill-card-modern i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.skill-card-modern h5 {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--dark-bg);
+}
+
+.skill-card-modern p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    color: var(--text-main);
+}
     </style>
 </head>
 <body data-theme="light">
@@ -169,28 +211,47 @@
 
         <main class="col-md-9 col-lg-10 main-content">
             <section id="about" class="mb-5 text-center">
-                <h2 class="fw-bold translatable" data-id="Tentang Saya" data-en="About Me">Tentang Saya</h2>
-                <hr style="width: 50px; border: 2px solid var(--primary-color); margin: auto;">
-                <p class="mt-4 translatable" style="max-width: 800px; margin: 20px auto; font-size: 1.1em;" 
-                   data-id="Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis. Saat ini, saya dipercaya sebagai Operator Sistem Informasi Akademik di STIE Gema Widya Bangsa, mengelola tata kelola data pendidikan tinggi." 
-                   data-en="I am a Digital Business student at Universitas Padjadjaran focusing on technology integration for business efficiency. Currently, I serve as an Academic Information System Operator at STIE Gema Widya Bangsa, managing higher education data governance.">
-                    Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis.
-                </p>
-                <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-shield-alt"></i> <h3>Data Governance</h3>
-                    <p>Berpengalaman dalam menjaga kerahasiaan, integritas, dan keamanan data akademik berskala institusi.</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-server"></i> <h3>System Management</h3>
-                    <p>Mahir mengoperasikan Enterprise Resource Planning (ERP) pendidikan dan manajemen database sistem informasi.</p>
-                </div>
-                <div class="skill-card">
-                    <i class="fas fa-exclamation-triangle"></i> <h3>Crisis Management</h3>
-                    <p>Teruji dalam menangani kendala teknis sistem pada periode krusial (KRS & Input Nilai) dengan cepat dan tepat.</p>
-                </div>
-                </div>
-            </section>
+    <h2 class="fw-bold translatable" data-id="Tentang Saya" data-en="About Me">Tentang Saya</h2>
+    <hr style="width: 50px; border: 2px solid var(--primary-color); margin: auto;">
+    
+    <p class="mt-4 translatable" style="max-width: 850px; margin: 20px auto; font-size: 1.1em;" 
+       data-id="Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis. Saat ini, saya dipercaya sebagai Operator Sistem Informasi Akademik di STIE Gema Widya Bangsa." 
+       data-en="I am a Digital Business student at Universitas Padjadjaran focusing on technology integration for business efficiency. Currently, I serve as an Academic Information System Operator at STIE Gema Widya Bangsa.">
+        Saya adalah mahasiswa **Bisnis Digital di Universitas Padjadjaran** yang berfokus pada integrasi teknologi untuk efisiensi bisnis.
+    </p>
+
+    <div class="skill-grid">
+        <div class="skill-card-modern">
+            <i class="fas fa-shield-halved"></i>
+            <h5 class="translatable" data-id="Data Governance" data-en="Data Governance">Data Governance</h5>
+            <p class="translatable" 
+               data-id="Berpengalaman dalam menjaga kerahasiaan, integritas, dan keamanan data akademik berskala institusi." 
+               data-en="Experienced in maintaining confidentiality, integrity, and security of institutional-scale academic data.">
+                Berpengalaman dalam menjaga kerahasiaan, integritas, dan keamanan data akademik berskala institusi.
+            </p>
+        </div>
+
+        <div class="skill-card-modern">
+            <i class="fas fa-microchip"></i>
+            <h5 class="translatable" data-id="System Management" data-en="System Management">System Management</h5>
+            <p class="translatable" 
+               data-id="Mahir mengoperasikan Enterprise Resource Planning (ERP) pendidikan dan manajemen database sistem informasi." 
+               data-en="Proficient in operating higher education ERP systems and managing information system databases.">
+                Mahir mengoperasikan Enterprise Resource Planning (ERP) pendidikan dan manajemen database sistem informasi.
+            </p>
+        </div>
+
+        <div class="skill-card-modern">
+            <i class="fas fa-triangle-exclamation"></i>
+            <h5 class="translatable" data-id="Crisis Management" data-en="Crisis Management">Crisis Management</h5>
+            <p class="translatable" 
+               data-id="Teruji dalam menangani kendala teknis sistem pada periode krusial (KRS & Input Nilai) dengan cepat dan tepat." 
+               data-en="Proven ability to handle technical system issues during crucial periods (Academic Registration) swiftly and accurately.">
+                Teruji dalam menangani kendala teknis sistem pada periode krusial (KRS & Input Nilai) dengan cepat dan tepat.
+            </p>
+        </div>
+    </div>
+</section>
 
             <section id="experience" class="mb-5">
                 <h3 class="fw-bold mb-4 translatable" data-id="Pengalaman Kerja" data-en="Work Experience">Pengalaman Kerja</h3>
@@ -279,4 +340,5 @@
 </script>
 </body>
 </html>
+
 
