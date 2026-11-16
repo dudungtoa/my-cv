@@ -194,7 +194,7 @@
         }
 
         /* =========================================================
-           HARVARD CV PRINT / ATS-FRIENDLY STRICT 1-PAGE PDF
+           HARVARD CV PRINT / ATS-FRIENDLY READABLE 1-PAGE PDF
            ========================================================= */
         #harvard-cv-print-area {
             display: none;
@@ -203,7 +203,7 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 10mm 13mm 10mm 13mm;
+                margin: 12mm 14mm 12mm 14mm;
             }
 
             * {
@@ -217,7 +217,6 @@
                 padding: 0 !important;
                 width: 100% !important;
                 height: auto !important;
-                overflow: visible !important;
             }
 
             /* Sembunyikan seluruh antarmuka web */
@@ -225,25 +224,24 @@
                 display: none !important;
             }
 
-            /* Dokumen CV Harvard murni 1 lembar penuh dengan proporsi seimbang */
+            /* Ukuran font standar Harvard CV (10.5pt) tanpa pengecilan zoom */
             #harvard-cv-print-area {
                 display: block !important;
                 font-family: "Times New Roman", Georgia, serif !important;
                 color: #000000 !important;
-                font-size: 9.8pt !important;
-                line-height: 1.28 !important;
+                font-size: 10.5pt !important;
+                line-height: 1.32 !important;
                 width: 100% !important;
-                page-break-after: avoid !important;
-                break-after: avoid !important;
+                zoom: 1 !important;
             }
 
             #harvard-cv-print-area .h-header {
                 text-align: center;
-                margin-bottom: 7pt;
+                margin-bottom: 8pt;
             }
 
             #harvard-cv-print-area .h-name {
-                font-size: 15pt;
+                font-size: 16pt;
                 font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 0.5pt;
@@ -251,32 +249,32 @@
             }
 
             #harvard-cv-print-area .h-contact {
-                font-size: 9pt;
+                font-size: 9.5pt;
                 margin: 0;
             }
 
             #harvard-cv-print-area .h-section {
-                margin-top: 7pt;
-                margin-bottom: 4pt;
+                margin-top: 8pt;
+                margin-bottom: 5pt;
             }
 
             #harvard-cv-print-area .h-section-title {
-                font-size: 10.2pt;
+                font-size: 11pt;
                 font-weight: bold;
                 text-transform: uppercase;
-                border-bottom: 0.9pt solid #000000;
+                border-bottom: 1pt solid #000000;
                 padding-bottom: 1.5pt;
-                margin-bottom: 4pt;
-                letter-spacing: 0.35pt;
+                margin-bottom: 4.5pt;
+                letter-spacing: 0.4pt;
             }
 
             #harvard-cv-print-area .h-summary {
                 text-align: justify;
-                margin: 0 0 2pt 0;
+                margin: 0;
             }
 
             #harvard-cv-print-area .h-entry {
-                margin-bottom: 5pt;
+                margin-bottom: 5.5pt;
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
@@ -310,7 +308,7 @@
 
             #harvard-cv-print-area ul.h-list {
                 margin: 1.5pt 0 2pt 0;
-                padding-left: 15pt;
+                padding-left: 16pt;
             }
 
             #harvard-cv-print-area ul.h-list li {
@@ -318,24 +316,22 @@
                 text-align: justify;
             }
 
-            /* Tata Letak Sertifikasi Sesuai Standar Harvard (1-2 Baris Rapi + Link Klikable) */
+            /* Sertifikasi: Gaya Harvard 2 Baris Ringkas dengan Link Klikable */
             #harvard-cv-print-area .h-cert-item {
-                margin-bottom: 3.5pt;
+                margin-bottom: 4pt;
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
 
             #harvard-cv-print-area .h-cert-desc {
-                font-size: 9pt;
+                font-size: 9.8pt;
                 margin: 0.5pt 0 0 0;
-                color: #111111 !important;
             }
 
             #harvard-cv-print-area .h-cert-link {
                 color: #000000 !important;
                 text-decoration: underline;
                 font-weight: bold;
-                font-size: 8.8pt;
                 white-space: nowrap;
             }
 
@@ -484,7 +480,11 @@
             <section id="certifications" class="mb-5">
                 <h3 class="fw-bold mb-4 translatable" data-id="Sertifikasi & Pelatihan" data-en="Certifications & Training">Sertifikasi & Pelatihan</h3>
                 
-                <div class="experience-item">
+                <div class="experience-item"
+                     data-cv-title-id="DEI Awareness Professional Certificate"
+                     data-cv-title-en="DEI Awareness Professional Certificate"
+                     data-cv-desc-id="Komunikasi profesional, kolaborasi (allyship), serta keberagaman dan inklusi organisasi."
+                     data-cv-desc-en="Professional communication, allyship, and workplace diversity & inclusion.">
                     <h5 class="fw-bold mb-0">DEI Awareness Professional Certificate</h5>
                     <div class="cert-date mb-2">LinkedIn Learning | 20 Agu 2026</div>
                     <p class="small text-muted mb-2 translatable" data-id="Sertifikasi jalur pembelajaran profesional mengenai komunikasi profesional, kolaborasi (allyship), serta keberagaman dan inklusi di lingkungan organisasi." data-en="Professional learning path certification covering professional communication, allyship, and workplace diversity and inclusion.">Sertifikasi jalur pembelajaran profesional mengenai komunikasi profesional, kolaborasi (allyship), serta keberagaman dan inklusi di lingkungan organisasi.</p>
@@ -493,7 +493,11 @@
                     </a>
                 </div>
 
-                <div class="experience-item">
+                <div class="experience-item"
+                     data-cv-title-id="Introduction to Cybersecurity"
+                     data-cv-title-en="Introduction to Cybersecurity"
+                     data-cv-desc-id="Dasar keamanan siber, perlindungan data daring, dan mitigasi ancaman sistem organisasi."
+                     data-cv-desc-en="Foundational cybersecurity principles, online data protection, and threat mitigation.">
                     <h5 class="fw-bold mb-0">Introduction to Cybersecurity</h5>
                     <div class="cert-date mb-2">Cisco Networking Academy | 23 Jan 2026</div>
                     <p class="small text-muted mb-2 translatable" data-id="Sertifikasi pemahaman dasar keamanan siber, perlindungan data daring, dan mitigasi ancaman keamanan pada sistem organisasi." data-en="Certification in foundational cybersecurity principles, online data protection, and threat mitigation for organizational systems.">Sertifikasi pemahaman dasar keamanan siber, perlindungan data daring, dan mitigasi ancaman keamanan pada sistem organisasi.</p>
@@ -502,7 +506,11 @@
                     </a>
                 </div>
 
-                <div class="experience-item">
+                <div class="experience-item"
+                     data-cv-title-id="Workshop Pendidikan: Efektivitas Program Merdeka Belajar"
+                     data-cv-title-en="Education Workshop: Effectiveness of Merdeka Belajar Program"
+                     data-cv-desc-id="Evaluasi kebijakan pendidikan tinggi dan efektivitas implementasi program Merdeka Belajar."
+                     data-cv-desc-en="Higher education policy evaluation on the effectiveness of the Merdeka Belajar program.">
                     <h5 class="fw-bold mb-0 translatable" data-id="Workshop Pendidikan: Efektivitas Program Merdeka Belajar Terhadap Mutu Pendidikan" data-en="Education Workshop: Effectiveness of Merdeka Belajar Program on Education Quality">Workshop Pendidikan: Efektivitas Program Merdeka Belajar Terhadap Mutu Pendidikan</h5>
                     <div class="cert-date mb-2">Kemendikbudristek RI &amp; DPR RI Komisi X | 25 Nov 2022</div>
                     <p class="small text-muted mb-2 translatable" data-id="Sertifikat partisipasi dalam kegiatan workshop kebijakan pendidikan tinggi dan evaluasi efektivitas program Merdeka Belajar." data-en="Certificate of participation in higher education policy workshop evaluating the effectiveness of the Merdeka Belajar program.">Sertifikat partisipasi dalam kegiatan workshop kebijakan pendidikan tinggi dan evaluasi efektivitas program Merdeka Belajar.</p>
@@ -511,7 +519,11 @@
                     </a>
                 </div>
 
-                <div class="experience-item">
+                <div class="experience-item"
+                     data-cv-title-id="Sertifikat Kompetensi Keahlian: Teknik Komputer & Jaringan (TKJ)"
+                     data-cv-title-en="Certificate of Competency: Computer & Network Engineering (TKJ)"
+                     data-cv-desc-id="Predikat Sangat Kompeten: Instalasi PC, Sistem Operasi (GUI & Text), Jaringan LAN, dan Server."
+                     data-cv-desc-en="Certified Highly Competent: PC installation, OS (GUI & Text), LAN networking, and server configuration.">
                     <h5 class="fw-bold mb-0 translatable" data-id="Sertifikat Kompetensi Keahlian: Teknik Komputer dan Jaringan (TKJ)" data-en="Certificate of Competency: Computer and Network Engineering (TKJ)">Sertifikat Kompetensi Keahlian: Teknik Komputer dan Jaringan (TKJ)</h5>
                     <div class="cert-date mb-2">PT. Cakrawala Global Informatika | 22 Apr 2019</div>
                     <p class="small text-muted mb-2 translatable" data-id="Lulus uji kompetensi keahlian dengan predikat Sangat Kompeten pada instalasi PC, sistem operasi (GUI &amp; Text), jaringan LAN, dan konfigurasi server." data-en="Certified Highly Competent in PC installation, operating systems (GUI &amp; Text), LAN networking, and server configuration.">Lulus uji kompetensi keahlian dengan predikat Sangat Kompeten pada instalasi PC, sistem operasi (GUI &amp; Text), jaringan LAN, dan konfigurasi server.</p>
@@ -546,7 +558,7 @@
     </div>
 </div>
 
-<!-- HIDDEN PRINT AREA: DYNAMIC HARVARD CV TEMPLATE (STRICT 1-PAGE A4) -->
+<!-- HIDDEN PRINT AREA: DYNAMIC HARVARD CV TEMPLATE (READABLE 10.5PT 1-PAGE) -->
 <div id="harvard-cv-print-area"></div>
 
 <script>
@@ -571,7 +583,7 @@
     });
 
     // =========================================================================
-    // EKSTRAKTOR DATA DOM -> DOKUMEN CV HARVARD 1 HALAMAN PENUH + AUTO-SCALE
+    // EKSTRAKTOR DATA DOM -> DOKUMEN CV HARVARD 1 HALAMAN (UKURAN HURUF 10.5PT)
     // =========================================================================
     function downloadHarvardCV() {
         const isID = currentLang === 'id';
@@ -580,7 +592,7 @@
         const fullName = document.getElementById('web-full-name').innerText.trim();
         const summaryText = document.getElementById('web-about-text').innerText.trim();
 
-        // 2. Ekstrak Pendidikan secara dinamis dari #education (Harvard menempatkan Pendidikan di atas)
+        // 2. Ekstrak Pendidikan secara dinamis dari #education
         const eduItems = document.querySelectorAll('#education .experience-item');
         let eduHTML = '';
         eduItems.forEach(item => {
@@ -644,16 +656,20 @@
             `;
         });
 
-        // 4. Ekstrak Sertifikasi & Pelatihan (Ringkas, Sejajar 1 Baris Tanggal, Tautan Aktif Tanpa URL Panjang)
+        // 4. Ekstrak Sertifikasi & Pelatihan secara ringkas (2 baris per item agar font tetap besar 10.5pt)
         const certItems = document.querySelectorAll('#certifications .experience-item');
         let certHTML = '';
         certItems.forEach(item => {
-            const title = item.querySelector('h5').innerText.trim();
+            const titleAttr = item.getAttribute(`data-cv-title-${currentLang}`);
+            const descAttr = item.getAttribute(`data-cv-desc-${currentLang}`);
+            const title = titleAttr || item.querySelector('h5').innerText.trim();
+            const desc = descAttr || (item.querySelector('p') ? item.querySelector('p').innerText.trim() : '');
+
             const metaText = item.querySelector('.cert-date').innerText.trim();
             const parts = metaText.split('|');
             const issuer = parts[0] ? parts[0].trim() : '';
             const date = parts[1] ? parts[1].trim() : '';
-            const desc = item.querySelector('p') ? item.querySelector('p').innerText.trim() : '';
+
             const linkEl = item.querySelector('a.cert-link');
             const href = linkEl ? linkEl.getAttribute('href') : '';
             const linkText = isID ? '[Lihat Sertifikat]' : '[View Credential]';
@@ -685,7 +701,6 @@
         };
 
         const printArea = document.getElementById('harvard-cv-print-area');
-        printArea.style.zoom = '1';
         printArea.innerHTML = `
             <div class="h-header">
                 <div class="h-name">${fullName}</div>
@@ -720,37 +735,15 @@
             </div>
         `;
 
-        // 7. Kalibrasi Auto-Fit 1 Halaman A4 agar tidak pernah meluber ke halaman 2
-        // Ukur tinggi aktual konten pada lebar cetak A4 (~700px) sebelum dialog print muncul
-        printArea.style.display = 'block';
-        printArea.style.position = 'absolute';
-        printArea.style.left = '-9999px';
-        printArea.style.width = '184mm'; // Lebar area cetak A4 (210mm - 26mm margin)
-
-        const maxPrintableHeightPx = 1030; // Batas aman tinggi 1 halaman A4 (277mm @ 96dpi)
-        const actualHeightPx = printArea.scrollHeight;
-
-        if (actualHeightPx > maxPrintableHeightPx) {
-            const scaleFactor = (maxPrintableHeightPx / actualHeightPx).toFixed(3);
-            printArea.style.zoom = scaleFactor;
-        }
-
-        // Kembalikan properti display ke kontrol CSS @media print
-        printArea.style.position = '';
-        printArea.style.left = '';
-        printArea.style.width = '';
-        printArea.style.display = '';
-
-        // 8. Ubah judul tab sementara agar nama file PDF otomatis rapi saat di-Save
+        // 7. Ubah judul tab sementara agar nama file PDF otomatis rapi saat di-Save
         const originalTitle = document.title;
         document.title = `CV_${fullName.replace(/\s+/g, '_')}_${currentLang.toUpperCase()}`;
 
         window.print();
 
-        // Kembalikan judul tab dan zoom semula setelah dialog print ditutup
+        // Kembalikan judul tab semula setelah dialog print ditutup
         setTimeout(() => {
             document.title = originalTitle;
-            printArea.style.zoom = '1';
         }, 500);
     }
 </script>
