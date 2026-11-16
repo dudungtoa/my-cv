@@ -91,7 +91,7 @@
         .btn-hire-me:hover { width: 175px; background-color: rgba(254, 101, 92, 1); }
 
         .btn-harvard { background-color: var(--harvard-btn-color); }
-        .btn-harvard:hover { width: 215px; background-color: #1a252f; }
+        .btn-harvard:hover { width: 195px; background-color: #1a252f; }
 
         /* Sidebar Styling */
         .sidebar { 
@@ -306,9 +306,9 @@
 
 <!-- FLOATING ACTION BUTTONS -->
 <div class="controls-container">
-    <button onclick="downloadHarvardCV()" class="btn-control btn-expandable btn-harvard" title="Download CV Format Harvard (PDF)">
+    <button onclick="downloadHarvardCV()" class="btn-control btn-expandable btn-harvard" title="Download CV Saya">
         <i class="fas fa-file-pdf"></i>
-        <span class="btn-text translatable" data-id="Download CV Harvard" data-en="Download Harvard CV">Download CV Saya</span>
+        <span class="btn-text translatable" data-id="Download CV Saya" data-en="Download My CV">Download CV Saya</span>
     </button>
     <a href="contact.html" class="btn-control btn-expandable btn-hire-me">
         <i class="fas fa-paper-plane"></i>
@@ -332,13 +332,14 @@
             <div class="nav flex-column text-start mt-4">
                 <a class="nav-link active translatable" href="#about" data-id="<i class='fas fa-user me-2'></i> Profil" data-en="<i class='fas fa-user me-2'></i> Profile"><i class="fas fa-user me-2"></i> Profil</a>
                 <a class="nav-link translatable" href="#experience" data-id="<i class='fas fa-briefcase me-2'></i> Pengalaman" data-en="<i class='fas fa-briefcase me-2'></i> Experience"><i class="fas fa-briefcase me-2"></i> Pengalaman</a>
+                <a class="nav-link translatable" href="#education" data-id="<i class='fas fa-graduation-cap me-2'></i> Pendidikan" data-en="<i class='fas fa-graduation-cap me-2'></i> Education"><i class="fas fa-graduation-cap me-2"></i> Pendidikan</a>
                 <a class="nav-link translatable" href="#certifications" data-id="<i class='fas fa-certificate me-2'></i> Sertifikasi" data-en="<i class='fas fa-certificate me-2'></i> Certifications"><i class="fas fa-certificate me-2"></i> Sertifikasi</a>
                 <a class="nav-link translatable" href="#skills" data-id="<i class='fas fa-tools me-2'></i> Keahlian" data-en="<i class='fas fa-tools me-2'></i> Skills"><i class="fas fa-tools me-2"></i> Keahlian</a>
             </div>
 
             <div class="mt-4 px-3">
                 <button onclick="downloadHarvardCV()" class="btn btn-outline-light btn-sm w-100 rounded-pill py-2 fw-semibold">
-                    <i class="fas fa-download me-1"></i> <span class="translatable" data-id="Unduh CV Harvard (PDF)" data-en="Download Harvard CV">Unduh CV Saya (PDF)</span>
+                    <i class="fas fa-download me-1"></i> <span class="translatable" data-id="Download CV Saya" data-en="Download My CV">Download CV Saya</span>
                 </button>
             </div>
 
@@ -420,6 +421,18 @@
                     <ul class="small">
                         <li class="translatable" data-id="Digitalisasi dokumen fisik menjadi arsip digital sistematis." data-en="Digitized physical documents into systematic digital archives.">Digitalisasi dokumen fisik menjadi arsip digital sistematis.</li>
                         <li class="translatable" data-id="Mendukung operasional harian institusi." data-en="Supported daily institutional operations.">Mendukung operasional harian institusi.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="education" class="mb-5">
+                <h3 class="fw-bold mb-4 translatable" data-id="Pendidikan" data-en="Education">Pendidikan</h3>
+                
+                <div class="experience-item" data-location="Bandung / Sumedang, Jawa Barat">
+                    <h5 class="fw-bold mb-1">Universitas Padjadjaran</h5>
+                    <div class="text-primary fw-bold mb-2 translatable" data-id="Sarjana Ekonomi (S.E.), Program Studi Bisnis Digital | Lulus 2026 (IPK: 3.11 / 4.00)" data-en="Bachelor of Economic Science (B.Sc.), Digital Business | Graduated 2026 (GPA: 3.11 / 4.00)">Sarjana Ekonomi (S.E.), Program Studi Bisnis Digital | Lulus 2026 (IPK: 3.11 / 4.00)</div>
+                    <ul class="small">
+                        <li class="translatable" data-id="Tugas Akhir: Pengembangan Sistem Pendukung Keputusan Alokasi Kuota Berbasis Entropy-Weighted MCDM." data-en="Undergraduate Thesis: Development of an Entropy-Weighted MCDM-Based Quota Allocation Decision Support System.">Tugas Akhir: Pengembangan Sistem Pendukung Keputusan Alokasi Kuota Berbasis Entropy-Weighted MCDM.</li>
                     </ul>
                 </div>
             </section>
@@ -523,7 +536,7 @@
             const parts = metaText.split('|');
             const company = parts[0] ? parts[0].trim() : '';
             const period = parts[1] ? parts[1].trim() : '';
-            const location = item.getAttribute('data-location') || 'Bandung, Indonesia';
+            const location = item.getAttribute('data-location') || 'Bandung, Jawa Barat';
 
             const bullets = item.querySelectorAll('ul li');
             let bulletsHTML = '';
@@ -546,7 +559,39 @@
             `;
         });
 
-        // 3. Ekstrak Sertifikasi & Pelatihan secara dinamis dari #certifications
+        // 3. Ekstrak Pendidikan secara dinamis dari #education
+        const eduItems = document.querySelectorAll('#education .experience-item');
+        let eduHTML = '';
+        eduItems.forEach(item => {
+            const univ = item.querySelector('h5').innerText.trim();
+            const metaText = item.querySelector('.text-primary').innerText.trim();
+            const parts = metaText.split('|');
+            const degree = parts[0] ? parts[0].trim() : '';
+            const gradInfo = parts[1] ? parts[1].trim() : '';
+            const location = item.getAttribute('data-location') || 'Bandung / Sumedang, Jawa Barat';
+
+            const bullets = item.querySelectorAll('ul li');
+            let bulletsHTML = '';
+            bullets.forEach(li => {
+                bulletsHTML += `<li>${li.innerText.trim()}</li>`;
+            });
+
+            eduHTML += `
+                <div class="h-entry">
+                    <div class="h-row">
+                        <span>${univ}</span>
+                        <span>${location}</span>
+                    </div>
+                    <div class="h-subrow">
+                        <span>${degree}</span>
+                        <span>${gradInfo}</span>
+                    </div>
+                    <ul class="h-list">${bulletsHTML}</ul>
+                </div>
+            `;
+        });
+
+        // 4. Ekstrak Sertifikasi & Pelatihan secara dinamis dari #certifications
         const certItems = document.querySelectorAll('#certifications .experience-item');
         let certHTML = '';
         certItems.forEach(item => {
@@ -570,18 +615,14 @@
             `;
         });
 
-        // 4. Ekstrak Keahlian & Teknologi secara dinamis dari #skills
+        // 5. Ekstrak Keahlian & Teknologi secara dinamis dari #skills
         const skillBadges = document.querySelectorAll('#web-skills-container .tag-badge');
         const skillList = Array.from(skillBadges).map(b => b.innerText.trim()).join(', ');
 
-        // 5. Susun Struktur Dokumen Harvard CV
+        // 6. Susun Struktur Dokumen Harvard CV
         const labels = {
             summary: isID ? 'RINGKASAN PROFESIONAL' : 'PROFESSIONAL SUMMARY',
             education: isID ? 'PENDIDIKAN' : 'EDUCATION',
-            degree: isID ? 'Sarjana Ekonomi (S.E.), Program Studi Bisnis Digital | IPK: 3.11 / 4.00' : 'Bachelor of Economic Science (B.Sc.), Digital Business | GPA: 3.11 / 4.00',
-            thesis: isID 
-                ? 'Tugas Akhir: Pengembangan kerangka kerja sistem pendukung keputusan berbasis algoritma Multi-Criteria Decision Making (MCDM) dengan pembobotan entropi.'
-                : 'Undergraduate Thesis: Development of a decision support system framework based on Multi-Criteria Decision Making (MCDM) algorithms with entropy weighting.',
             experience: isID ? 'PENGALAMAN KERJA' : 'EXPERIENCE',
             certifications: isID ? 'SERTIFIKASI & PELATIHAN' : 'CERTIFICATIONS & TRAINING',
             skills: isID ? 'KEAHLIAN TEKNIS & KOMPETENSI' : 'TECHNICAL SKILLS & COMPETENCIES',
@@ -604,19 +645,7 @@
 
             <div class="h-section">
                 <div class="h-section-title">${labels.education}</div>
-                <div class="h-entry">
-                    <div class="h-row">
-                        <span>Universitas Padjadjaran</span>
-                        <span>Sumedang, Jawa Barat</span>
-                    </div>
-                    <div class="h-subrow">
-                        <span>${labels.degree}</span>
-                        <span>2026</span>
-                    </div>
-                    <ul class="h-list">
-                        <li>${labels.thesis}</li>
-                    </ul>
-                </div>
+                ${eduHTML}
             </div>
 
             <div class="h-section">
@@ -635,9 +664,9 @@
             </div>
         `;
 
-        // 6. Ubah judul tab sementara agar nama file PDF otomatis rapi saat di-Save
+        // 7. Ubah judul tab sementara agar nama file PDF otomatis rapi saat di-Save
         const originalTitle = document.title;
-        document.title = `CV_Harvard_${fullName.replace(/\s+/g, '_')}_${currentLang.toUpperCase()}`;
+        document.title = `CV_${fullName.replace(/\s+/g, '_')}_${currentLang.toUpperCase()}`;
 
         window.print();
 
