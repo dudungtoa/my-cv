@@ -194,7 +194,7 @@
         }
 
         /* =========================================================
-           HARVARD CV PRINT / ATS-FRIENDLY 1-PAGE PDF STYLESHEET
+           HARVARD CV PRINT / ATS-FRIENDLY STRICT 1-PAGE PDF
            ========================================================= */
         #harvard-cv-print-area {
             display: none;
@@ -203,7 +203,11 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 9mm 12mm 9mm 12mm;
+                margin: 10mm 13mm 10mm 13mm;
+            }
+
+            * {
+                box-sizing: border-box !important;
             }
 
             html, body {
@@ -213,6 +217,7 @@
                 padding: 0 !important;
                 width: 100% !important;
                 height: auto !important;
+                overflow: visible !important;
             }
 
             /* Sembunyikan seluruh antarmuka web */
@@ -220,49 +225,49 @@
                 display: none !important;
             }
 
-            /* Tampilkan dokumen CV Harvard murni yang dikalibrasi tepat 1 halaman A4 */
+            /* Dokumen CV Harvard murni 1 lembar penuh dengan proporsi seimbang */
             #harvard-cv-print-area {
                 display: block !important;
                 font-family: "Times New Roman", Georgia, serif !important;
                 color: #000000 !important;
-                font-size: 9.2pt !important;
-                line-height: 1.22 !important;
+                font-size: 9.8pt !important;
+                line-height: 1.28 !important;
                 width: 100% !important;
-                max-height: 277mm !important;
-                overflow: hidden !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
             }
 
             #harvard-cv-print-area .h-header {
                 text-align: center;
-                margin-bottom: 5pt;
+                margin-bottom: 7pt;
             }
 
             #harvard-cv-print-area .h-name {
-                font-size: 14pt;
+                font-size: 15pt;
                 font-weight: bold;
                 text-transform: uppercase;
-                letter-spacing: 0.4pt;
-                margin: 0 0 1.5pt 0;
+                letter-spacing: 0.5pt;
+                margin: 0 0 2pt 0;
             }
 
             #harvard-cv-print-area .h-contact {
-                font-size: 8.5pt;
+                font-size: 9pt;
                 margin: 0;
             }
 
             #harvard-cv-print-area .h-section {
-                margin-top: 5.5pt;
-                margin-bottom: 3pt;
+                margin-top: 7pt;
+                margin-bottom: 4pt;
             }
 
             #harvard-cv-print-area .h-section-title {
-                font-size: 9.8pt;
+                font-size: 10.2pt;
                 font-weight: bold;
                 text-transform: uppercase;
-                border-bottom: 0.8pt solid #000000;
-                padding-bottom: 1pt;
-                margin-bottom: 3pt;
-                letter-spacing: 0.3pt;
+                border-bottom: 0.9pt solid #000000;
+                padding-bottom: 1.5pt;
+                margin-bottom: 4pt;
+                letter-spacing: 0.35pt;
             }
 
             #harvard-cv-print-area .h-summary {
@@ -271,8 +276,9 @@
             }
 
             #harvard-cv-print-area .h-entry {
-                margin-bottom: 3.5pt;
+                margin-bottom: 5pt;
                 page-break-inside: avoid;
+                break-inside: avoid;
             }
 
             #harvard-cv-print-area .h-row {
@@ -280,6 +286,17 @@
                 justify-content: space-between;
                 align-items: baseline;
                 font-weight: bold;
+                gap: 10pt;
+            }
+
+            #harvard-cv-print-area .h-row-left {
+                flex: 1 1 auto;
+            }
+
+            #harvard-cv-print-area .h-row-right {
+                flex: 0 0 auto;
+                white-space: nowrap;
+                text-align: right;
             }
 
             #harvard-cv-print-area .h-subrow {
@@ -287,37 +304,44 @@
                 justify-content: space-between;
                 align-items: baseline;
                 font-style: italic;
-                margin-bottom: 1pt;
+                margin-bottom: 1.5pt;
+                gap: 10pt;
             }
 
             #harvard-cv-print-area ul.h-list {
-                margin: 1pt 0 2pt 0;
-                padding-left: 14pt;
+                margin: 1.5pt 0 2pt 0;
+                padding-left: 15pt;
             }
 
             #harvard-cv-print-area ul.h-list li {
-                margin-bottom: 1pt;
+                margin-bottom: 1.5pt;
                 text-align: justify;
             }
 
+            /* Tata Letak Sertifikasi Sesuai Standar Harvard (1-2 Baris Rapi + Link Klikable) */
             #harvard-cv-print-area .h-cert-item {
-                margin-bottom: 2.5pt;
+                margin-bottom: 3.5pt;
                 page-break-inside: avoid;
+                break-inside: avoid;
             }
 
             #harvard-cv-print-area .h-cert-desc {
-                font-size: 8.6pt;
-                margin: 0;
+                font-size: 9pt;
+                margin: 0.5pt 0 0 0;
+                color: #111111 !important;
             }
 
             #harvard-cv-print-area .h-cert-link {
                 color: #000000 !important;
                 text-decoration: underline;
-                font-size: 8.4pt;
+                font-weight: bold;
+                font-size: 8.8pt;
+                white-space: nowrap;
             }
 
             #harvard-cv-print-area .h-skills-line {
-                margin: 1.5pt 0;
+                margin: 2pt 0 0 0;
+                text-align: justify;
             }
         }
     </style>
@@ -522,7 +546,7 @@
     </div>
 </div>
 
-<!-- HIDDEN PRINT AREA: DYNAMIC HARVARD CV TEMPLATE (1 PAGE) -->
+<!-- HIDDEN PRINT AREA: DYNAMIC HARVARD CV TEMPLATE (STRICT 1-PAGE A4) -->
 <div id="harvard-cv-print-area"></div>
 
 <script>
@@ -547,7 +571,7 @@
     });
 
     // =========================================================================
-    // EKSTRAKTOR DATA DOM -> DOKUMEN CV HARVARD 1 LEMBAR (A4)
+    // EKSTRAKTOR DATA DOM -> DOKUMEN CV HARVARD 1 HALAMAN PENUH + AUTO-SCALE
     // =========================================================================
     function downloadHarvardCV() {
         const isID = currentLang === 'id';
@@ -556,39 +580,7 @@
         const fullName = document.getElementById('web-full-name').innerText.trim();
         const summaryText = document.getElementById('web-about-text').innerText.trim();
 
-        // 2. Ekstrak Pengalaman Kerja secara dinamis dari #experience
-        const expItems = document.querySelectorAll('#experience .experience-item');
-        let expHTML = '';
-        expItems.forEach(item => {
-            const role = item.querySelector('h5').innerText.trim();
-            const metaText = item.querySelector('.text-primary').innerText.trim();
-            const parts = metaText.split('|');
-            const company = parts[0] ? parts[0].trim() : '';
-            const period = parts[1] ? parts[1].trim() : '';
-            const location = item.getAttribute('data-location') || 'Bandung, Jawa Barat';
-
-            const bullets = item.querySelectorAll('ul li');
-            let bulletsHTML = '';
-            bullets.forEach(li => {
-                bulletsHTML += `<li>${li.innerText.trim()}</li>`;
-            });
-
-            expHTML += `
-                <div class="h-entry">
-                    <div class="h-row">
-                        <span>${company}</span>
-                        <span>${location}</span>
-                    </div>
-                    <div class="h-subrow">
-                        <span>${role}</span>
-                        <span>${period}</span>
-                    </div>
-                    <ul class="h-list">${bulletsHTML}</ul>
-                </div>
-            `;
-        });
-
-        // 3. Ekstrak Pendidikan secara dinamis dari #education
+        // 2. Ekstrak Pendidikan secara dinamis dari #education (Harvard menempatkan Pendidikan di atas)
         const eduItems = document.querySelectorAll('#education .experience-item');
         let eduHTML = '';
         eduItems.forEach(item => {
@@ -608,19 +600,51 @@
             eduHTML += `
                 <div class="h-entry">
                     <div class="h-row">
-                        <span>${univ}</span>
-                        <span>${location}</span>
+                        <span class="h-row-left">${univ}</span>
+                        <span class="h-row-right">${location}</span>
                     </div>
                     <div class="h-subrow">
-                        <span>${degree}</span>
-                        <span>${gradInfo}</span>
+                        <span class="h-row-left">${degree}</span>
+                        <span class="h-row-right">${gradInfo}</span>
                     </div>
                     <ul class="h-list">${bulletsHTML}</ul>
                 </div>
             `;
         });
 
-        // 4. Ekstrak Sertifikasi & Pelatihan secara ringkas (1-2 baris per item + link aktif)
+        // 3. Ekstrak Pengalaman Kerja secara dinamis dari #experience
+        const expItems = document.querySelectorAll('#experience .experience-item');
+        let expHTML = '';
+        expItems.forEach(item => {
+            const role = item.querySelector('h5').innerText.trim();
+            const metaText = item.querySelector('.text-primary').innerText.trim();
+            const parts = metaText.split('|');
+            const company = parts[0] ? parts[0].trim() : '';
+            const period = parts[1] ? parts[1].trim() : '';
+            const location = item.getAttribute('data-location') || 'Bandung, Jawa Barat';
+
+            const bullets = item.querySelectorAll('ul li');
+            let bulletsHTML = '';
+            bullets.forEach(li => {
+                bulletsHTML += `<li>${li.innerText.trim()}</li>`;
+            });
+
+            expHTML += `
+                <div class="h-entry">
+                    <div class="h-row">
+                        <span class="h-row-left">${company}</span>
+                        <span class="h-row-right">${location}</span>
+                    </div>
+                    <div class="h-subrow">
+                        <span class="h-row-left">${role}</span>
+                        <span class="h-row-right">${period}</span>
+                    </div>
+                    <ul class="h-list">${bulletsHTML}</ul>
+                </div>
+            `;
+        });
+
+        // 4. Ekstrak Sertifikasi & Pelatihan (Ringkas, Sejajar 1 Baris Tanggal, Tautan Aktif Tanpa URL Panjang)
         const certItems = document.querySelectorAll('#certifications .experience-item');
         let certHTML = '';
         certItems.forEach(item => {
@@ -632,14 +656,14 @@
             const desc = item.querySelector('p') ? item.querySelector('p').innerText.trim() : '';
             const linkEl = item.querySelector('a.cert-link');
             const href = linkEl ? linkEl.getAttribute('href') : '';
-            const linkLabel = isID ? 'Kredensial' : 'Credential';
-            const linkHTML = href ? ` &mdash; <a href="${href}" class="h-cert-link">${linkLabel}</a>` : '';
+            const linkText = isID ? '[Lihat Sertifikat]' : '[View Credential]';
+            const linkHTML = href ? ` <a href="${href}" target="_blank" class="h-cert-link">${linkText}</a>` : '';
 
             certHTML += `
                 <div class="h-cert-item">
                     <div class="h-row">
-                        <span>${title} <span style="font-weight:normal; font-style:italic;">(${issuer})</span></span>
-                        <span>${date}</span>
+                        <span class="h-row-left">${title} &mdash; <span style="font-weight:normal; font-style:italic;">${issuer}</span></span>
+                        <span class="h-row-right">${date}</span>
                     </div>
                     <div class="h-cert-desc">${desc}${linkHTML}</div>
                 </div>
@@ -661,6 +685,7 @@
         };
 
         const printArea = document.getElementById('harvard-cv-print-area');
+        printArea.style.zoom = '1';
         printArea.innerHTML = `
             <div class="h-header">
                 <div class="h-name">${fullName}</div>
@@ -695,15 +720,37 @@
             </div>
         `;
 
-        // 7. Ubah judul tab sementara agar nama file PDF otomatis rapi saat di-Save
+        // 7. Kalibrasi Auto-Fit 1 Halaman A4 agar tidak pernah meluber ke halaman 2
+        // Ukur tinggi aktual konten pada lebar cetak A4 (~700px) sebelum dialog print muncul
+        printArea.style.display = 'block';
+        printArea.style.position = 'absolute';
+        printArea.style.left = '-9999px';
+        printArea.style.width = '184mm'; // Lebar area cetak A4 (210mm - 26mm margin)
+
+        const maxPrintableHeightPx = 1030; // Batas aman tinggi 1 halaman A4 (277mm @ 96dpi)
+        const actualHeightPx = printArea.scrollHeight;
+
+        if (actualHeightPx > maxPrintableHeightPx) {
+            const scaleFactor = (maxPrintableHeightPx / actualHeightPx).toFixed(3);
+            printArea.style.zoom = scaleFactor;
+        }
+
+        // Kembalikan properti display ke kontrol CSS @media print
+        printArea.style.position = '';
+        printArea.style.left = '';
+        printArea.style.width = '';
+        printArea.style.display = '';
+
+        // 8. Ubah judul tab sementara agar nama file PDF otomatis rapi saat di-Save
         const originalTitle = document.title;
         document.title = `CV_${fullName.replace(/\s+/g, '_')}_${currentLang.toUpperCase()}`;
 
         window.print();
 
-        // Kembalikan judul tab semula setelah dialog print ditutup
+        // Kembalikan judul tab dan zoom semula setelah dialog print ditutup
         setTimeout(() => {
             document.title = originalTitle;
+            printArea.style.zoom = '1';
         }, 500);
     }
 </script>
