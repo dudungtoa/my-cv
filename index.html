@@ -19,7 +19,8 @@
             --text-main: #495057;
             --light-bg: #f9fbfd;
             --card-bg: #ffffff;
-            --hire-me-color: rgba(254, 101, 92, 0.85); /* Transparan */
+            --hire-me-color: rgba(254, 101, 92, 0.85);
+            --harvard-btn-color: rgba(45, 62, 80, 0.9);
         }
 
         [data-theme="dark"] {
@@ -28,6 +29,7 @@
             --light-bg: #121212;
             --card-bg: #1e1e1e;
             --dark-bg: #54b689;
+            --harvard-btn-color: rgba(84, 182, 137, 0.85);
         }
 
         body { 
@@ -51,8 +53,8 @@
         }
 
         .btn-control {
-            background-color: rgba(84, 182, 137, 0.7); /* Transparan Hijau */
-            backdrop-filter: blur(5px); /* Efek Blur di belakang tombol */
+            background-color: rgba(84, 182, 137, 0.75);
+            backdrop-filter: blur(5px);
             color: white;
             border: none;
             border-radius: 50px;
@@ -62,7 +64,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             text-decoration: none;
@@ -75,18 +77,21 @@
             color: white; 
         }
 
-        /* Khusus Tombol Hire Me (Memanjang) */
-        .btn-hire-me { 
-            background-color: var(--hire-me-color); 
-            width: 50px; 
+        /* Expandable Floating Buttons */
+        .btn-expandable {
+            width: 50px;
             justify-content: flex-start;
             white-space: nowrap;
         }
-        .btn-hire-me i { min-width: 50px; text-align: center; }
-        .btn-hire-me .btn-text { opacity: 0; transition: 0.3s; font-size: 0.9rem; }
-        
-        .btn-hire-me:hover { width: 180px; background-color: rgba(254, 101, 92, 1); }
-        .btn-hire-me:hover .btn-text { opacity: 1; padding-right: 15px; }
+        .btn-expandable i { min-width: 50px; text-align: center; }
+        .btn-expandable .btn-text { opacity: 0; transition: 0.3s; font-size: 0.85rem; }
+        .btn-expandable:hover .btn-text { opacity: 1; padding-right: 18px; }
+
+        .btn-hire-me { background-color: var(--hire-me-color); }
+        .btn-hire-me:hover { width: 175px; background-color: rgba(254, 101, 92, 1); }
+
+        .btn-harvard { background-color: var(--harvard-btn-color); }
+        .btn-harvard:hover { width: 215px; background-color: #1a252f; }
 
         /* Sidebar Styling */
         .sidebar { 
@@ -130,54 +135,182 @@
         .cert-date { font-size: 0.85rem; color: var(--primary-color); font-weight: 600; }
 
         footer { border-top: 1px solid #dee2e6; margin-top: 50px; padding-top: 20px; color: #6c757d; font-size: 0.9rem; }
-        /* Styling Kartu Keahlian Khusus */
-.skill-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-}
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
 
-.skill-card-modern {
-    background: var(--card-bg);
-    border: 1px solid rgba(0,0,0,0.05);
-    border-top: 4px solid var(--primary-color);
-    border-radius: 12px;
-    padding: 25px;
-    text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
+        .skill-card-modern {
+            background: var(--card-bg);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
 
-.skill-card-modern:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
+        .skill-card-modern:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
 
-.skill-card-modern i {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    display: block;
-}
+        .skill-card-modern i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: block;
+        }
 
-.skill-card-modern h5 {
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--dark-bg);
-}
+        .skill-card-modern h5 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark-bg);
+        }
 
-.skill-card-modern p {
-    font-size: 0.9rem;
-    margin-bottom: 0;
-    color: var(--text-main);
-}
+        .skill-card-modern p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            color: var(--text-main);
+        }
+
+        .cert-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+        .cert-link:hover {
+            text-decoration: underline;
+            opacity: 0.85;
+        }
+
+        /* =========================================================
+           HARVARD CV PRINT / ATS-FRIENDLY PDF STYLESHEET
+           ========================================================= */
+        #harvard-cv-print-area {
+            display: none;
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 14mm 16mm 14mm 16mm;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* Sembunyikan seluruh antarmuka web */
+            .web-interface, .controls-container {
+                display: none !important;
+            }
+
+            /* Tampilkan dokumen CV Harvard murni */
+            #harvard-cv-print-area {
+                display: block !important;
+                font-family: "Times New Roman", Georgia, serif !important;
+                color: #000000 !important;
+                font-size: 10.5pt !important;
+                line-height: 1.35 !important;
+                width: 100% !important;
+            }
+
+            #harvard-cv-print-area .h-header {
+                text-align: center;
+                margin-bottom: 10pt;
+            }
+
+            #harvard-cv-print-area .h-name {
+                font-size: 16pt;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 0.5pt;
+                margin: 0 0 3pt 0;
+            }
+
+            #harvard-cv-print-area .h-contact {
+                font-size: 9.5pt;
+                margin: 0;
+            }
+
+            #harvard-cv-print-area .h-section {
+                margin-top: 9pt;
+                margin-bottom: 6pt;
+            }
+
+            #harvard-cv-print-area .h-section-title {
+                font-size: 11pt;
+                font-weight: bold;
+                text-transform: uppercase;
+                border-bottom: 1pt solid #000000;
+                padding-bottom: 1.5pt;
+                margin-bottom: 5pt;
+                letter-spacing: 0.4pt;
+            }
+
+            #harvard-cv-print-area .h-summary {
+                text-align: justify;
+                margin: 0 0 4pt 0;
+            }
+
+            #harvard-cv-print-area .h-entry {
+                margin-bottom: 6pt;
+                page-break-inside: avoid;
+            }
+
+            #harvard-cv-print-area .h-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                font-weight: bold;
+            }
+
+            #harvard-cv-print-area .h-subrow {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                font-style: italic;
+                margin-bottom: 2pt;
+            }
+
+            #harvard-cv-print-area ul.h-list {
+                margin: 2pt 0 4pt 0;
+                padding-left: 16pt;
+            }
+
+            #harvard-cv-print-area ul.h-list li {
+                margin-bottom: 2pt;
+                text-align: justify;
+            }
+
+            #harvard-cv-print-area .h-skills-line {
+                margin: 2pt 0;
+            }
+        }
     </style>
 </head>
 <body data-theme="light">
 
+<!-- FLOATING ACTION BUTTONS -->
 <div class="controls-container">
-    <a href="contact.html" class="btn-control btn-hire-me">
+    <button onclick="downloadHarvardCV()" class="btn-control btn-expandable btn-harvard" title="Download CV Format Harvard (PDF)">
+        <i class="fas fa-file-pdf"></i>
+        <span class="btn-text translatable" data-id="Download CV Harvard" data-en="Download Harvard CV">Download CV Harvard</span>
+    </button>
+    <a href="contact.html" class="btn-control btn-expandable btn-hire-me">
         <i class="fas fa-paper-plane"></i>
         <span class="btn-text translatable" data-id="Hubungi Saya" data-en="Contact Me">Hubungi Saya</span>
     </a>
@@ -185,14 +318,15 @@
     <button id="theme-toggle" class="btn-control"><i id="theme-icon" class="fas fa-moon"></i></button>
 </div>
 
-<div class="container-fluid p-0">
+<!-- WEB PORTFOLIO INTERFACE -->
+<div class="container-fluid p-0 web-interface">
     <div class="row g-0">
         <nav class="col-md-3 col-lg-2 sidebar text-center">
             <div class="mb-4 px-3">
                 <img src="AccountPictures.JPG" onerror="this.src='AccountPictures.jpg';" class="rounded-circle profile-img mb-3" alt="Usama Zaid Ali">
-                <h5 class="fw-bold mb-0">Usama Zaid Ali Hendrawan</h5>
+                <h5 class="fw-bold mb-0" id="web-full-name">Usama Zaid Ali Hendrawan</h5>
                 <p class="text-primary fw-bold small mb-2">(@DudungToa_)</p>
-                <p class="small opacity-75 translatable" data-id="Mahasiswa Bisnis Digital @ UNPAD" data-en="Digital Business Student @ UNPAD">Mahasiswa Bisnis Digital @ UNPAD</p>
+                <p class="small opacity-75 translatable" id="web-edu-title" data-id="Sarjana Bisnis Digital (S.E.) @ UNPAD" data-en="B.Sc. in Digital Business @ UNPAD">Sarjana Bisnis Digital (S.E.) @ UNPAD</p>
             </div>
             
             <div class="nav flex-column text-start mt-4">
@@ -202,7 +336,13 @@
                 <a class="nav-link translatable" href="#skills" data-id="<i class='fas fa-tools me-2'></i> Keahlian" data-en="<i class='fas fa-tools me-2'></i> Skills"><i class="fas fa-tools me-2"></i> Keahlian</a>
             </div>
 
-            <div class="mt-5 social-links">
+            <div class="mt-4 px-3">
+                <button onclick="downloadHarvardCV()" class="btn btn-outline-light btn-sm w-100 rounded-pill py-2 fw-semibold">
+                    <i class="fas fa-download me-1"></i> <span class="translatable" data-id="Unduh CV Harvard (PDF)" data-en="Download Harvard CV">Unduh CV Harvard (PDF)</span>
+                </button>
+            </div>
+
+            <div class="mt-4 social-links">
                 <a href="https://web.facebook.com/dudungtoa/" target="_blank"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.instagram.com/usamazaid17/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://github.com/DudungToa" target="_blank"><i class="fab fa-github"></i></a>
@@ -211,66 +351,75 @@
 
         <main class="col-md-9 col-lg-10 main-content">
             <section id="about" class="mb-5 text-center">
-    <h2 class="fw-bold translatable" data-id="Tentang Saya" data-en="About Me">Tentang Saya</h2>
-    <hr style="width: 50px; border: 2px solid var(--primary-color); margin: auto;">
-    
-    <p class="mt-4 translatable" style="max-width: 850px; margin: 20px auto; font-size: 1.1em;" 
-       data-id="Saya adalah mahasiswa Bisnis Digital di Universitas Padjadjaran yang berfokus pada integrasi teknologi untuk efisiensi bisnis. Saat ini, saya dipercaya sebagai Operator Sistem Informasi Akademik di STIE Gema Widya Bangsa." 
-       data-en="I am a Digital Business student at Universitas Padjadjaran focusing on technology integration for business efficiency. Currently, I serve as an Academic Information System Operator at STIE Gema Widya Bangsa.">
-        Saya adalah mahasiswa **Bisnis Digital di Universitas Padjadjaran** yang berfokus pada integrasi teknologi untuk efisiensi bisnis.
-    </p>
+                <h2 class="fw-bold translatable" data-id="Tentang Saya" data-en="About Me">Tentang Saya</h2>
+                <hr style="width: 50px; border: 2px solid var(--primary-color); margin: auto;">
+                
+                <p id="web-about-text" class="mt-4 translatable" style="max-width: 850px; margin: 20px auto; font-size: 1.05em; line-height: 1.8;" 
+                   data-id="Saya adalah lulusan <strong>Bisnis Digital dari Universitas Padjadjaran</strong> dengan fokus keahlian pada analitik data dan pengembangan sistem bisnis. Saat ini, saya mendalami perancangan aplikasi pendukung operasional, khususnya sistem manajemen gudang kain untuk mengoptimalkan pencatatan stok dan alur distribusi di sektor tekstil. Melalui pendekatan yang sistematis dan berbasis pemodelan data, saya berorientasi pada integrasi teknologi digital untuk memecahkan masalah operasional bisnis secara presisi dan efisien." 
+                   data-en="I am a <strong>Digital Business graduate from Universitas Padjadjaran</strong> specializing in data analytics and business systems development. Currently, I focus on designing operational support applications, particularly fabric warehouse management systems, to optimize inventory tracking and distribution workflows in the textile sector. Through a systematic, data-modeling approach, I focus on integrating digital technology to solve operational business challenges precisely and efficiently.">
+                    Saya adalah lulusan <strong>Bisnis Digital dari Universitas Padjadjaran</strong> dengan fokus keahlian pada analitik data dan pengembangan sistem bisnis. Saat ini, saya mendalami perancangan aplikasi pendukung operasional, khususnya sistem manajemen gudang kain untuk mengoptimalkan pencatatan stok dan alur distribusi di sektor tekstil. Melalui pendekatan yang sistematis dan berbasis pemodelan data, saya berorientasi pada integrasi teknologi digital untuk memecahkan masalah operasional bisnis secara presisi dan efisien.
+                </p>
 
-    <div class="skill-grid">
-        <div class="skill-card-modern">
-            <i class="fas fa-shield-halved"></i>
-            <h5 class="translatable" data-id="Data Governance" data-en="Data Governance">Data Governance</h5>
-            <p class="translatable" 
-               data-id="Berpengalaman dalam menjaga kerahasiaan, integritas, dan keamanan data akademik berskala institusi." 
-               data-en="Experienced in maintaining confidentiality, integrity, and security of institutional-scale academic data.">
-                Berpengalaman dalam menjaga kerahasiaan, integritas, dan keamanan data akademik berskala institusi.
-            </p>
-        </div>
+                <div class="skill-grid">
+                    <div class="skill-card-modern">
+                        <i class="fas fa-sitemap"></i>
+                        <h5 class="translatable" data-id="Business Systems" data-en="Business Systems">Business Systems</h5>
+                        <p class="translatable" 
+                           data-id="Merancang aplikasi pendukung operasional dan sistem manajemen inventaris untuk efisiensi distribusi dan pencatatan stok." 
+                           data-en="Designing operational support applications and inventory management systems for distribution efficiency and stock tracking.">
+                            Merancang aplikasi pendukung operasional dan sistem manajemen inventaris untuk efisiensi distribusi dan pencatatan stok.
+                        </p>
+                    </div>
 
-        <div class="skill-card-modern">
-            <i class="fas fa-microchip"></i>
-            <h5 class="translatable" data-id="System Management" data-en="System Management">System Management</h5>
-            <p class="translatable" 
-               data-id="Mahir mengoperasikan Enterprise Resource Planning (ERP) pendidikan dan manajemen database sistem informasi." 
-               data-en="Proficient in operating higher education ERP systems and managing information system databases.">
-                Mahir mengoperasikan Enterprise Resource Planning (ERP) pendidikan dan manajemen database sistem informasi.
-            </p>
-        </div>
+                    <div class="skill-card-modern">
+                        <i class="fas fa-chart-line"></i>
+                        <h5 class="translatable" data-id="Data Analytics" data-en="Data Analytics">Data Analytics</h5>
+                        <p class="translatable" 
+                           data-id="Mengolah data kuantitatif terstruktur dan memodelkan sistem pendukung keputusan berbasis metode multi-kriteria (MCDM)." 
+                           data-en="Processing structured quantitative data and modeling decision support systems based on multi-criteria methods (MCDM).">
+                            Mengolah data kuantitatif terstruktur dan memodelkan sistem pendukung keputusan berbasis metode multi-kriteria (MCDM).
+                        </p>
+                    </div>
 
-        <div class="skill-card-modern">
-            <i class="fas fa-triangle-exclamation"></i>
-            <h5 class="translatable" data-id="Crisis Management" data-en="Crisis Management">Crisis Management</h5>
-            <p class="translatable" 
-               data-id="Teruji dalam menangani kendala teknis sistem pada periode krusial (KRS & Input Nilai) dengan cepat dan tepat." 
-               data-en="Proven ability to handle technical system issues during crucial periods (Academic Registration) swiftly and accurately.">
-                Teruji dalam menangani kendala teknis sistem pada periode krusial (KRS & Input Nilai) dengan cepat dan tepat.
-            </p>
-        </div>
-    </div>
-</section>
+                    <div class="skill-card-modern">
+                        <i class="fas fa-shield-halved"></i>
+                        <h5 class="translatable" data-id="Data Governance & ERP" data-en="Data Governance & ERP">Data Governance & ERP</h5>
+                        <p class="translatable" 
+                           data-id="Berpengalaman menjaga integritas basis data, tata kelola sistem informasi, dan operasional ERP berskala institusi." 
+                           data-en="Experienced in maintaining database integrity, information system governance, and institutional-scale ERP operations.">
+                            Berpengalaman menjaga integritas basis data, tata kelola sistem informasi, dan operasional ERP berskala institusi.
+                        </p>
+                    </div>
+                </div>
+            </section>
 
             <section id="experience" class="mb-5">
                 <h3 class="fw-bold mb-4 translatable" data-id="Pengalaman Kerja" data-en="Work Experience">Pengalaman Kerja</h3>
                 
-                <div class="experience-item">
-                    <h5 class="fw-bold mb-1">Academic Information System Operator</h5>
-                    <div class="text-primary fw-bold mb-2 translatable" data-id="STIE Gema Widya Bangsa | Mei 2024 - Sekarang" data-en="STIE Gema Widya Bangsa | May 2024 - Present">STIE Gema Widya Bangsa | Mei 2024 - Sekarang</div>
+                <div class="experience-item" data-location="Bandung, Jawa Barat">
+                    <h5 class="fw-bold mb-1 translatable" data-id="Kepala Marketing dan Bisnis Sistem" data-en="Head of Digital Marketing & Business Systems">Kepala Marketing dan Bisnis Sistem</h5>
+                    <div class="text-primary fw-bold mb-2 translatable" data-id="Bos Textile Bandung | Oktober 2026 - Sekarang" data-en="Bos Textile Bandung | October 2026 - Present">Bos Textile Bandung | Oktober 2026 - Sekarang</div>
                     <ul class="small">
-                        <li>Mengelola database akademik dan pelaporan PDDIKTI.</li>
-                        <li>Technical Support & Crisis Management (KRS/Input Nilai).</li>
+                        <li class="translatable" data-id="Mengembangkan aplikasi manajemen gudang kain terintegrasi untuk optimalisasi pencatatan stok dan alur distribusi." data-en="Developing an integrated fabric warehouse management application to optimize stock tracking and distribution workflows.">Mengembangkan aplikasi manajemen gudang kain terintegrasi untuk optimalisasi pencatatan stok dan alur distribusi.</li>
+                        <li class="translatable" data-id="Merancang strategi pemasaran digital dan sistem informasi operasional untuk mendukung efisiensi pertumbuhan bisnis." data-en="Designing digital marketing strategies and operational information systems to support business growth efficiency.">Merancang strategi pemasaran digital dan sistem informasi operasional untuk mendukung efisiensi pertumbuhan bisnis.</li>
                     </ul>
                 </div>
 
-                <div class="experience-item">
-                    <h5 class="fw-bold mb-1">Staf Akademik</h5>
+                <div class="experience-item" data-location="Kabupaten Bandung, Jawa Barat">
+                    <h5 class="fw-bold mb-1">Academic Information System Operator</h5>
+                    <div class="text-primary fw-bold mb-2 translatable" data-id="STIE Gema Widya Bangsa | Mei 2024 - September 2026" data-en="STIE Gema Widya Bangsa | May 2024 - September 2026">STIE Gema Widya Bangsa | Mei 2024 - September 2026</div>
+                    <ul class="small">
+                        <li class="translatable" data-id="Mengelola database akademik dan pelaporan PDDIKTI." data-en="Managed academic databases and PDDIKTI reporting.">Mengelola database akademik dan pelaporan PDDIKTI.</li>
+                        <li class="translatable" data-id="Technical Support & Crisis Management (KRS/Input Nilai)." data-en="Technical Support & Crisis Management (Course Registration & Grading).">Technical Support & Crisis Management (KRS/Input Nilai).</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item" data-location="Bandung, Jawa Barat">
+                    <h5 class="fw-bold mb-1 translatable" data-id="Staf Akademik" data-en="Academic Staff">Staf Akademik</h5>
                     <div class="text-primary fw-bold mb-2">Universitas Bandung | 2022 - 2024</div>
                     <ul class="small">
-                        <li>Digitalisasi dokumen fisik menjadi arsip digital sistematis.</li>
-                        <li>Mendukung operasional harian institusi.</li>
+                        <li class="translatable" data-id="Digitalisasi dokumen fisik menjadi arsip digital sistematis." data-en="Digitized physical documents into systematic digital archives.">Digitalisasi dokumen fisik menjadi arsip digital sistematis.</li>
+                        <li class="translatable" data-id="Mendukung operasional harian institusi." data-en="Supported daily institutional operations.">Mendukung operasional harian institusi.</li>
                     </ul>
                 </div>
             </section>
@@ -278,6 +427,15 @@
             <section id="certifications" class="mb-5">
                 <h3 class="fw-bold mb-4 translatable" data-id="Sertifikasi & Pelatihan" data-en="Certifications & Training">Sertifikasi & Pelatihan</h3>
                 
+                <div class="experience-item">
+                    <h5 class="fw-bold mb-0">Modern AI</h5>
+                    <div class="cert-date mb-2">Cisco Networking Academy | 2026</div>
+                    <p class="small text-muted mb-2 translatable" data-id="Sertifikasi penguasaan konsep kecerdasan buatan modern dan penerapannya dalam efisiensi sistem." data-en="Certification in modern artificial intelligence concepts and their application in system efficiency.">Sertifikasi penguasaan konsep kecerdasan buatan modern dan penerapannya dalam efisiensi sistem.</p>
+                    <a href="https://lnkd.in/p/gqYN4ZWw" target="_blank" class="cert-link">
+                        <i class="fas fa-external-link-alt"></i> <span class="translatable" data-id="Lihat Kredensial" data-en="View Credential">Lihat Kredensial</span>
+                    </a>
+                </div>
+
                 <div class="experience-item">
                     <h5 class="fw-bold mb-0">Introduction to Cybersecurity</h5>
                     <div class="cert-date mb-2">Cisco Networking Academy | Jan 23, 2026</div>
@@ -301,9 +459,13 @@
             <section id="skills" class="mb-5">
                 <h3 class="fw-bold mb-4 translatable" data-id="Keahlian & Teknologi" data-en="Skills & Technology">Keahlian & Teknologi</h3>
                 <div class="card p-4 border-0 shadow-sm">
-                    <div>
+                    <div id="web-skills-container">
+                        <span class="tag-badge">BUSINESS SYSTEMS</span>
+                        <span class="tag-badge">WAREHOUSE MANAGEMENT APP</span>
+                        <span class="tag-badge">DATA ANALYTICS & MCDM</span>
+                        <span class="tag-badge">GOOGLE APPS SCRIPT</span>
+                        <span class="tag-badge">PYTHON & KNIME</span>
                         <span class="tag-badge">CYBERSECURITY</span>
-                        <span class="tag-badge">DATA MINING</span>
                         <span class="tag-badge">LINUX SERVER</span>
                         <span class="tag-badge">n8n AUTOMATION</span>
                         <span class="tag-badge">DIGITAL MARKETING</span>
@@ -317,6 +479,9 @@
         </main>
     </div>
 </div>
+
+<!-- HIDDEN PRINT AREA: DYNAMIC HARVARD CV TEMPLATE -->
+<div id="harvard-cv-print-area"></div>
 
 <script>
     // Theme Toggle
@@ -338,9 +503,149 @@
             el.innerHTML = el.getAttribute(`data-${currentLang}`);
         });
     });
+
+    // =========================================================================
+    // EKSTRAKTOR DATA DOM -> DOKUMEN CV HARVARD SIAP CETAK / SIMPAN PDF
+    // =========================================================================
+    function downloadHarvardCV() {
+        const isID = currentLang === 'id';
+
+        // 1. Ekstrak Identitas & Ringkasan dari DOM
+        const fullName = document.getElementById('web-full-name').innerText.trim();
+        const summaryText = document.getElementById('web-about-text').innerText.trim();
+
+        // 2. Ekstrak Pengalaman Kerja secara dinamis dari #experience
+        const expItems = document.querySelectorAll('#experience .experience-item');
+        let expHTML = '';
+        expItems.forEach(item => {
+            const role = item.querySelector('h5').innerText.trim();
+            const metaText = item.querySelector('.text-primary').innerText.trim();
+            const parts = metaText.split('|');
+            const company = parts[0] ? parts[0].trim() : '';
+            const period = parts[1] ? parts[1].trim() : '';
+            const location = item.getAttribute('data-location') || 'Bandung, Indonesia';
+
+            const bullets = item.querySelectorAll('ul li');
+            let bulletsHTML = '';
+            bullets.forEach(li => {
+                bulletsHTML += `<li>${li.innerText.trim()}</li>`;
+            });
+
+            expHTML += `
+                <div class="h-entry">
+                    <div class="h-row">
+                        <span>${company}</span>
+                        <span>${location}</span>
+                    </div>
+                    <div class="h-subrow">
+                        <span>${role}</span>
+                        <span>${period}</span>
+                    </div>
+                    <ul class="h-list">${bulletsHTML}</ul>
+                </div>
+            `;
+        });
+
+        // 3. Ekstrak Sertifikasi & Pelatihan secara dinamis dari #certifications
+        const certItems = document.querySelectorAll('#certifications .experience-item');
+        let certHTML = '';
+        certItems.forEach(item => {
+            const title = item.querySelector('h5').innerText.trim();
+            const metaText = item.querySelector('.cert-date').innerText.trim();
+            const parts = metaText.split('|');
+            const issuer = parts[0] ? parts[0].trim() : '';
+            const date = parts[1] ? parts[1].trim() : '';
+            const desc = item.querySelector('p') ? item.querySelector('p').innerText.trim() : '';
+            const linkEl = item.querySelector('a.cert-link');
+            const linkStr = linkEl ? ` (${linkEl.getAttribute('href')})` : '';
+
+            certHTML += `
+                <div class="h-entry">
+                    <div class="h-row">
+                        <span>${title} — <span style="font-weight:normal; font-style:italic;">${issuer}</span></span>
+                        <span>${date}</span>
+                    </div>
+                    <div style="font-size: 9.5pt;">${desc}${linkStr}</div>
+                </div>
+            `;
+        });
+
+        // 4. Ekstrak Keahlian & Teknologi secara dinamis dari #skills
+        const skillBadges = document.querySelectorAll('#web-skills-container .tag-badge');
+        const skillList = Array.from(skillBadges).map(b => b.innerText.trim()).join(', ');
+
+        // 5. Susun Struktur Dokumen Harvard CV
+        const labels = {
+            summary: isID ? 'RINGKASAN PROFESIONAL' : 'PROFESSIONAL SUMMARY',
+            education: isID ? 'PENDIDIKAN' : 'EDUCATION',
+            degree: isID ? 'Sarjana Ekonomi (S.E.), Program Studi Bisnis Digital | IPK: 3.11 / 4.00' : 'Bachelor of Economic Science (B.Sc.), Digital Business | GPA: 3.11 / 4.00',
+            thesis: isID 
+                ? 'Tugas Akhir: Pengembangan kerangka kerja sistem pendukung keputusan berbasis algoritma Multi-Criteria Decision Making (MCDM) dengan pembobotan entropi.'
+                : 'Undergraduate Thesis: Development of a decision support system framework based on Multi-Criteria Decision Making (MCDM) algorithms with entropy weighting.',
+            experience: isID ? 'PENGALAMAN KERJA' : 'EXPERIENCE',
+            certifications: isID ? 'SERTIFIKASI & PELATIHAN' : 'CERTIFICATIONS & TRAINING',
+            skills: isID ? 'KEAHLIAN TEKNIS & KOMPETENSI' : 'TECHNICAL SKILLS & COMPETENCIES',
+            coreCompetencies: isID ? 'Kompetensi Utama' : 'Core Competencies'
+        };
+
+        const printArea = document.getElementById('harvard-cv-print-area');
+        printArea.innerHTML = `
+            <div class="h-header">
+                <div class="h-name">${fullName}</div>
+                <div class="h-contact">
+                    Bandung, Jawa Barat, Indonesia &bull; Portfolio: dudungtoa.github.io/my-cv &bull; GitHub: github.com/DudungToa
+                </div>
+            </div>
+
+            <div class="h-section">
+                <div class="h-section-title">${labels.summary}</div>
+                <p class="h-summary">${summaryText}</p>
+            </div>
+
+            <div class="h-section">
+                <div class="h-section-title">${labels.education}</div>
+                <div class="h-entry">
+                    <div class="h-row">
+                        <span>Universitas Padjadjaran</span>
+                        <span>Sumedang, Jawa Barat</span>
+                    </div>
+                    <div class="h-subrow">
+                        <span>${labels.degree}</span>
+                        <span>2026</span>
+                    </div>
+                    <ul class="h-list">
+                        <li>${labels.thesis}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="h-section">
+                <div class="h-section-title">${labels.experience}</div>
+                ${expHTML}
+            </div>
+
+            <div class="h-section">
+                <div class="h-section-title">${labels.certifications}</div>
+                ${certHTML}
+            </div>
+
+            <div class="h-section">
+                <div class="h-section-title">${labels.skills}</div>
+                <div class="h-skills-line"><strong>${labels.coreCompetencies}:</strong> ${skillList}</div>
+            </div>
+        `;
+
+        // 6. Ubah judul tab sementara agar nama file PDF otomatis rapi saat di-Save
+        const originalTitle = document.title;
+        document.title = `CV_Harvard_${fullName.replace(/\s+/g, '_')}_${currentLang.toUpperCase()}`;
+
+        window.print();
+
+        // Kembalikan judul tab semula setelah dialog print ditutup
+        setTimeout(() => {
+            document.title = originalTitle;
+        }, 500);
+    }
 </script>
 </body>
 </html>
-
-
-
