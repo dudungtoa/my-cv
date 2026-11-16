@@ -194,7 +194,7 @@
         }
 
         /* =========================================================
-           HARVARD CV PRINT / ATS-FRIENDLY PDF STYLESHEET
+           HARVARD CV PRINT / ATS-FRIENDLY 1-PAGE PDF STYLESHEET
            ========================================================= */
         #harvard-cv-print-area {
             display: none;
@@ -203,14 +203,16 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 14mm 16mm 14mm 16mm;
+                margin: 9mm 12mm 9mm 12mm;
             }
 
-            body {
+            html, body {
                 background: #ffffff !important;
                 color: #000000 !important;
                 margin: 0 !important;
                 padding: 0 !important;
+                width: 100% !important;
+                height: auto !important;
             }
 
             /* Sembunyikan seluruh antarmuka web */
@@ -218,56 +220,58 @@
                 display: none !important;
             }
 
-            /* Tampilkan dokumen CV Harvard murni */
+            /* Tampilkan dokumen CV Harvard murni yang dikalibrasi tepat 1 halaman A4 */
             #harvard-cv-print-area {
                 display: block !important;
                 font-family: "Times New Roman", Georgia, serif !important;
                 color: #000000 !important;
-                font-size: 10.5pt !important;
-                line-height: 1.35 !important;
+                font-size: 9.2pt !important;
+                line-height: 1.22 !important;
                 width: 100% !important;
+                max-height: 277mm !important;
+                overflow: hidden !important;
             }
 
             #harvard-cv-print-area .h-header {
                 text-align: center;
-                margin-bottom: 10pt;
+                margin-bottom: 5pt;
             }
 
             #harvard-cv-print-area .h-name {
-                font-size: 16pt;
+                font-size: 14pt;
                 font-weight: bold;
                 text-transform: uppercase;
-                letter-spacing: 0.5pt;
-                margin: 0 0 3pt 0;
+                letter-spacing: 0.4pt;
+                margin: 0 0 1.5pt 0;
             }
 
             #harvard-cv-print-area .h-contact {
-                font-size: 9.5pt;
+                font-size: 8.5pt;
                 margin: 0;
             }
 
             #harvard-cv-print-area .h-section {
-                margin-top: 9pt;
-                margin-bottom: 6pt;
+                margin-top: 5.5pt;
+                margin-bottom: 3pt;
             }
 
             #harvard-cv-print-area .h-section-title {
-                font-size: 11pt;
+                font-size: 9.8pt;
                 font-weight: bold;
                 text-transform: uppercase;
-                border-bottom: 1pt solid #000000;
-                padding-bottom: 1.5pt;
-                margin-bottom: 5pt;
-                letter-spacing: 0.4pt;
+                border-bottom: 0.8pt solid #000000;
+                padding-bottom: 1pt;
+                margin-bottom: 3pt;
+                letter-spacing: 0.3pt;
             }
 
             #harvard-cv-print-area .h-summary {
                 text-align: justify;
-                margin: 0 0 4pt 0;
+                margin: 0 0 2pt 0;
             }
 
             #harvard-cv-print-area .h-entry {
-                margin-bottom: 6pt;
+                margin-bottom: 3.5pt;
                 page-break-inside: avoid;
             }
 
@@ -283,21 +287,37 @@
                 justify-content: space-between;
                 align-items: baseline;
                 font-style: italic;
-                margin-bottom: 2pt;
+                margin-bottom: 1pt;
             }
 
             #harvard-cv-print-area ul.h-list {
-                margin: 2pt 0 4pt 0;
-                padding-left: 16pt;
+                margin: 1pt 0 2pt 0;
+                padding-left: 14pt;
             }
 
             #harvard-cv-print-area ul.h-list li {
-                margin-bottom: 2pt;
+                margin-bottom: 1pt;
                 text-align: justify;
             }
 
+            #harvard-cv-print-area .h-cert-item {
+                margin-bottom: 2.5pt;
+                page-break-inside: avoid;
+            }
+
+            #harvard-cv-print-area .h-cert-desc {
+                font-size: 8.6pt;
+                margin: 0;
+            }
+
+            #harvard-cv-print-area .h-cert-link {
+                color: #000000 !important;
+                text-decoration: underline;
+                font-size: 8.4pt;
+            }
+
             #harvard-cv-print-area .h-skills-line {
-                margin: 2pt 0;
+                margin: 1.5pt 0;
             }
         }
     </style>
@@ -502,7 +522,7 @@
     </div>
 </div>
 
-<!-- HIDDEN PRINT AREA: DYNAMIC HARVARD CV TEMPLATE -->
+<!-- HIDDEN PRINT AREA: DYNAMIC HARVARD CV TEMPLATE (1 PAGE) -->
 <div id="harvard-cv-print-area"></div>
 
 <script>
@@ -527,7 +547,7 @@
     });
 
     // =========================================================================
-    // EKSTRAKTOR DATA DOM -> DOKUMEN CV HARVARD SIAP CETAK / SIMPAN PDF
+    // EKSTRAKTOR DATA DOM -> DOKUMEN CV HARVARD 1 LEMBAR (A4)
     // =========================================================================
     function downloadHarvardCV() {
         const isID = currentLang === 'id';
@@ -600,7 +620,7 @@
             `;
         });
 
-        // 4. Ekstrak Sertifikasi & Pelatihan secara dinamis dari #certifications
+        // 4. Ekstrak Sertifikasi & Pelatihan secara ringkas (1-2 baris per item + link aktif)
         const certItems = document.querySelectorAll('#certifications .experience-item');
         let certHTML = '';
         certItems.forEach(item => {
@@ -611,15 +631,17 @@
             const date = parts[1] ? parts[1].trim() : '';
             const desc = item.querySelector('p') ? item.querySelector('p').innerText.trim() : '';
             const linkEl = item.querySelector('a.cert-link');
-            const linkStr = linkEl ? ` (${linkEl.getAttribute('href')})` : '';
+            const href = linkEl ? linkEl.getAttribute('href') : '';
+            const linkLabel = isID ? 'Kredensial' : 'Credential';
+            const linkHTML = href ? ` &mdash; <a href="${href}" class="h-cert-link">${linkLabel}</a>` : '';
 
             certHTML += `
-                <div class="h-entry">
+                <div class="h-cert-item">
                     <div class="h-row">
-                        <span>${title} — <span style="font-weight:normal; font-style:italic;">${issuer}</span></span>
+                        <span>${title} <span style="font-weight:normal; font-style:italic;">(${issuer})</span></span>
                         <span>${date}</span>
                     </div>
-                    <div style="font-size: 9.5pt;">${desc}${linkStr}</div>
+                    <div class="h-cert-desc">${desc}${linkHTML}</div>
                 </div>
             `;
         });
